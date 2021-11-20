@@ -1,6 +1,6 @@
 <?php
-require("utils.php");
-require("")
+require("config/utils.php");
 
+require($vues['vueTaskPublic'])
 
 ?>
