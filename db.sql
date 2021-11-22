@@ -40,7 +40,7 @@ CREATE TABLE `task` (
 INSERT INTO `task` (`id`, `name`, `idList`) VALUES
 (5, 'faire des choses', 2),
 (6, 'faire des choses 2', 2),
-(7, 'faire n\'importe quoi', 2),
+(7, 'faire nimporte quoi', 2),
 (8, 'bonjour', 1),
 (9, 'salut', 1);
 
