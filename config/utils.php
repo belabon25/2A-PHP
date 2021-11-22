@@ -6,11 +6,12 @@ $passwd="achanger";
 
 //require
 require($dir.'controleur/connection.php');
-require($dir.'modele/task.php');
 require($dir.'modele/gateway/gatewayTask.php');
 require($dir.'modele/gateway/gatewayUser.php');
 require($dir.'modele/gateway/gatewayTodolist.php');
-
+require($dir.'modele/todoList.php');
+require($dir.'modele/task.php');
+require($dir.'modele/user.php');
 
 //vues
 $vues['error']=$dir.'vues/erreur.php';

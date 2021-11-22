@@ -31,7 +31,7 @@
 
 <?php
 $gatewayTodolist = new gatewayTodolist($dsn, $user, $passwd);
-$res = $gatewayTask->getTask();
+$res = $gatewayTodolist->getAllPublicLists();
 foreach ($res as $todo) {
     echo $todo->__toString() . "<BR/>";
 }
