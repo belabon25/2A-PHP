@@ -6,9 +6,6 @@
 <meta charset="utf-8">
 </head>
 <body>
-<div class="alert alert-primary" role="alert">
-  A simple primary alert—check it out!
-</div>
 <div class="jumbotron text-center">
         <h1>My First Bootstrap Page</h1>
         <p>Resize this responsive page to see the effect!</p>
@@ -43,4 +40,5 @@
 
             $gwtd = new gatewayTodolist($dsn, $user, $passwd);
 
-            $gwtd->getAllPublicLists(); ?>
+            $gwtd->getAllPublicLists(); 
+?>
