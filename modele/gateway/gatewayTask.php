@@ -6,13 +6,13 @@ class gatewayTask{
        $this->con=new Connection($dsn,$user,$passwd); 
     }
 
-    public function getTask(int $listId):array{
+    public function getTasks(int $listId):array{
         $arr=[];
         $query="select * from task where idList=:i";
         $this->con->executeQuery($query,array(':i'=>array($listId,PDO::PARAM_INT)));
         $res=$this->con->getResults();        
         foreach($res as $t){
-            $arr[]=new Task($t["name"],$t["description"]);
+            $arr[]=new Task($t["name"]);
         }
         return $arr;
     }
