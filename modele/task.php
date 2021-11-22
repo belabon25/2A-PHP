@@ -1,13 +1,11 @@
 <?php
 class Task{
     private $nom;
-    private $description;
     private $dateDeb;
     private $dateFin;
-    public function __construct(string $nom, string $description,string $dateDeb,string $dateFin)
+    public function __construct(string $nom,string $dateDeb,string $dateFin)
     {
         $this->nom=$nom;
-        $this->$description=$description;
         $this->$dateDeb=$dateDeb;
         $this->$dateFin=$dateFin;
     }

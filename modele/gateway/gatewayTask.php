@@ -6,9 +6,9 @@ class gatewayTask{
        $this->con=new Connection($dsn,$user,$passwd); 
     }
 
-    public function getPublicTask():array{
+    public function getTask():array{
         $arr=[];
-        $query="select * from tache where isPrivate=0";
+        $query="select * from task";
         $this->con->executeQuery($query);
         $res=$this->con->getResults();        
         foreach($res as $t){
