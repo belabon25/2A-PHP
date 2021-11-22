@@ -8,4 +8,11 @@ class Task{
     public function getName():?string{
         return $this->nom;
     }
+
+    public function __toString():string
+    {
+
+        $s = $this->nom."<BR/>";
+        return $s;
+    }
 }

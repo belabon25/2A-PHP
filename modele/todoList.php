@@ -1,6 +1,6 @@
 <?php
 class todoList{
-    private $task;
+    private $tasks;
     private $name;
     private $isPrivate;
     private $isDone;
@@ -13,6 +13,16 @@ class todoList{
         $this->isDone=$isDone;
         $this->idUser=$idUser;
         $gt=new gatewayTask($dsn,$user,$passwd);
-        $this->task=$gt->getTask($this->idList);
+        $this->tasks=$gt->getTasks($this->idList);
+    }
+    public function __toString():string
+    {
+
+        $s = $this->name."<br>".$this->isPrivate."<br>".$this->isDone."<br>".$this->idUser."<br>";
+        foreach($this->tasks as $task)
+        {
+            $s = $s.$task->__toString();
+        }
+        return $s;
     }
 }
