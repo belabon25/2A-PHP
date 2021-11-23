@@ -12,7 +12,7 @@ class Task{
     public function __toString():string
     {
 
-        $s = $this->nom."<BR/>";
+        $s = "<p>".$this->nom."</p>";
         return $s;
     }
 }

@@ -17,12 +17,20 @@ class todoList{
     }
     public function __toString():string
     {
-
-        $s = $this->name."<br>".$this->isPrivate."<br>".$this->isDone."<br>".$this->idUser."<br>";
-        foreach($this->tasks as $task)
-        {
-            $s = $s.$task->__toString();
-        }
+        
+        $s = "<div class=\"container\">
+                <div class=\"row\">
+                </div>
+                <div class=\"col-sm-4\">
+                <h3>$this->name.</h3>
+                <p>$this->isPrivate</p>
+                <p>$this->isDone</p>
+                <p>$this->idUser</p>";
+            foreach($this->tasks as $task)
+            {
+                $s = $s.$task->__toString();
+            }
+            $s = $s."</div></div>";
         return $s;
     }
 }

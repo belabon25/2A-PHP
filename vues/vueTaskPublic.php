@@ -8,22 +8,8 @@
 
 <body>
     <div class="jumbotron text-center">
-        <h1>My First Bootstrap Page</h1>
-        <p>Resize this responsive page to see the effect!</p>
-    </div>
-    <div class="container">
-        <div class="row">
-
-        </div>
-        <div class="col-sm-4">
-            <h3>Column 2</h3>
-            <p>Lorem ipsum dolor..</p>
-        </div>
-        <div class="col-sm-4">
-            <h3>Column 3</h3>
-            <p>Lorem ipsum dolor..</p>
-        </div>
-    </div>
+        <h1>To do list !</h1>
+        <p>Projet PHP de GOURVES Yoann et LABONNE Benjamin</p>
     </div>
 </body>
 
