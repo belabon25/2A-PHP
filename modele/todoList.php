@@ -22,6 +22,7 @@ class todoList{
                 <div class=\"row\">
                 </div>
                 <div class=\"col-sm-4\">
+                <div class=\"alert alert-primary\">
                 <h3>$this->name.</h3>
                 <p>$this->isPrivate</p>
                 <p>$this->isDone</p>
@@ -30,7 +31,7 @@ class todoList{
             {
                 $s = $s.$task->__toString();
             }
-            $s = $s."</div></div>";
+            $s = $s."</div></div></div>";
         return $s;
     }
 }
