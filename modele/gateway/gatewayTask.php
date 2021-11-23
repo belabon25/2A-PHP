@@ -1,7 +1,6 @@
 <?php
 
 class gatewayTask{
-    
     public function __construct(string $dsn, string $user, string $passwd){
        $this->con=new Connection($dsn,$user,$passwd); 
     }

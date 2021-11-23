@@ -13,6 +13,6 @@ class gatewayTodolist{
         foreach($res as $list){
             $arr[]=new todoList($list["id"],$list["name"],$list["isPrivate"],$list["isDone"],$list["idUser"]);
         }
-        return $arr;
+        return $arr; 
     }
 }
