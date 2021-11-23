@@ -16,4 +16,15 @@ class gatewayUser{
         }
         return new user($res["id"],$res["name"]);
     }
+
+    public function getUserFromid(int $userId):user{
+        $query="select * from user where userId=:id";
+        $this->con->executeQuery($query,array(':id'=>array($userId,PDO::PARAM_INT)));
+        $res=$this->con->getResults();
+        if(sizeof($res)==0){
+            throw new ErrorException("Id Invalide");
+            return NULL;
+        }
+        return new user($res["id"],$res["name"]);
+    }
 }
