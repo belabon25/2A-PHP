@@ -15,20 +15,23 @@
     </div>
     <div class="jumbotron text-center">
         <div>
+            <div class="p-3 mb-2 bg-warning text-black">
             <h2>Listes publiques :</h2>
+            </div>
             <?php
             $gatewayTodolist = new gatewayTodolist($dsn, $user, $passwd);
             $res = $gatewayTodolist->getAllPublicLists();
+            echo "<div class=\"container\">
+            <div class=\"row\">";
             foreach ($res as $todo) {
-                echo $todo->__toString() . "<BR/>";
+                echo "<div class=\"col alert alert-primary\">".$todo."</div>";
             }
-            $gwtd = new gatewayTodolist($dsn, $user, $passwd);
-            $gwtd->getAllPublicLists();
+            echo "</div></div>";
             ?>
         </div>
     </div>
     <div class="jumbotron text-center">
-        <div class="p-3 mb-2 bg-success text-white">
+        <div class="p-3 mb-2 bg-success text-black">
             <h2>Listes privées :</h2>
         </div>
     </div>
