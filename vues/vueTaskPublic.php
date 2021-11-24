@@ -26,6 +26,23 @@
             }
             echo "</div></div>";
             ?>
+             <div>
+                <?php
+                    $pagePrec=$pageAffichage-1;
+                    $pageSuiv=$pageAffichage+1;
+                    if ($pageAffichage>1) {
+                        echo "<a href=\"index.php?page=$pagePrec\">&lt    </a>
+                        <a href=\"index.php?page=1\">1</a>";
+                    }                    
+                    
+                    echo "<a>    $pageAffichage    </a>";
+                    
+                    if ($pageAffichage<$nbPage) {
+                        echo "<a href=\"index.php?page=$nbPage\">$nbPage</a>
+                        <a href=\"index.php?page=$pageSuiv\">    &gt</a>";
+                    }
+                ?>
+            </div>
         </div>
     </div>
     <div class="jumbotron text-center">

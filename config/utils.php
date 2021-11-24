@@ -15,6 +15,7 @@ require($dir.'modele/todolistModel.php');
 require($dir.'modele/todoList.php');
 require($dir.'modele/task.php');
 require($dir.'modele/user.php');
+require($dir.'config/validation.php');
 
 //vues
 $vues['error']=$dir.'vues/erreur.php';

@@ -2,14 +2,14 @@
 class Controller
 {
     //La page web affichera ce nombre de lignes par pages
-    private $nbListesParPage = 4;
+    private $nbListesParPage = 1;
 
     //Vérifie si la page donnée est valide
     public function setPage(int $nbListes) : int
     {
         if (isset($_GET["page"])) {
             $numPage = $_GET["page"];
-            Validation::validatePageNb($numPage, $nbListes, $this->nbListesParPage);
+            $numPage=Validation::validatePageNb($numPage, $nbListes, $this->nbListesParPage);
         } else {
             $numPage = 1;
         }
@@ -17,28 +17,32 @@ class Controller
     }
 
     //Fonction utilisée pour une création de page d'utilisateur simple ET d'utilisateur connecté
-    private function createPage(int &$nbPage) : array
+    private function createPage(int &$pageAffichage, int &$nbPage) : array
     {
         $todoListModel = new todolistModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
         $nbListesTotal = $todoListModel->getNbPublicLists();
         $nbPage = ceil($nbListesTotal/$this->nbListesParPage);
-        $res = $todoListModel->getPublicLists($this->setPage($nbListesTotal,$this->nbListesParPage), $this->nbListesParPage);
+        $page=$this->setPage($nbListesTotal,$this->nbListesParPage);
+        $pageAffichage=$page+1;//sert pour l'affichage
+        $res = $todoListModel->getPublicLists($page, $this->nbListesParPage);
         return $res;
     }
 
     //Fonction appelée pour créer la page d'un utilisateur non connecté
     public function createPublicPage()
     {
+        $pageAffichage=0;
         $nbPage = 1;
-        $res = $this->createPage($nbPage);
+        $res = $this->createPage($pageAffichage, $nbPage);
         require($GLOBALS["vues"]['vueTaskPublic']);
     }
 
     //Fonction appelée pour créer la page d'un utilisateur connecté
     public function createPrivatePage()
     {
+        $pageAffichage=0;
         $nbPage = 1;
-        $this->createPage($nbPage);
+        $res = $this->createPage($pageAffichage, $nbPage);
         $todoListModel = new todolistModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
         $nbListesTotal = $todoListModel->getNbPrivateLists(1); //TODO : ajouter la gestion des utilisateurs
         $nbPage = ceil($nbListesTotal/$this->nbListesParPage);
