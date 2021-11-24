@@ -20,7 +20,7 @@
             </div>
             <?php
             $gatewayTodolist = new gatewayTodolist($dsn, $user, $passwd);
-            $res = $gatewayTodolist->getPublicLists(1,4);
+            $res = $gatewayTodolist->getPublicLists(0,4);
             echo "<div class=\"container\">
             <div class=\"row\">";
             foreach ($res as $todo) {
