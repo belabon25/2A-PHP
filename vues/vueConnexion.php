@@ -16,25 +16,26 @@
     <div class="jumbotron text-center">
         <div>
             <div class="p-3 mb-2 bg-warning text-black">
-            <h2>Connexion</h2>
+                <h2>Connexion</h2>
             </div>
-            <!-- PAS FINI OSKOUR -->
-            <form >
-                <label for="fname">Username</label>
-                <input type="text" id="fname" name="fname"><br>
-                <label for="fpasswd">Password</label>
-                <input type="text" id="fpasswd" name="fpasswd"><br>
-            </form>
-            <?php
-            $gatewayTodolist = new gatewayTodolist($dsn, $user, $passwd);
-            $res = $gatewayTodolist->getPublicLists(0,4);
-            echo "<div class=\"container\">
-            <div class=\"row\">";
-            foreach ($res as $todo) {
-                echo "<div class=\"col alert alert-primary\">".$todo."</div>";
-            }
-            echo "</div></div>";
-            ?>
+            <div class="w-25 col-md-8 mx-auto">
+            <!-- mettre le fichier qui gere ca ici -->
+                <form action="">
+                    <div class="form-row align-items-center">
+                        <div class="form-group row-auto">
+                            <label for="fname">Username</label>
+                            <input class="form-control" type="text" id="fname" name="fname"><br>
+                        </div>
+                        <div class="form-group row-auto">
+                            <label for="fpasswd">Password</label>
+                            <input class="form-control" type="text" id="fpasswd" name="fpasswd"><br>
+                        </div>
+                        <div class="form-group row-auto">
+                            <input class="btn btn-primary" type="submit" value="connect">
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </body>

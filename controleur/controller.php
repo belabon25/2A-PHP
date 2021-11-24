@@ -19,10 +19,10 @@ class Controller
     //Fonction utilisée pour une création de page d'utilisateur simple ET d'utilisateur connecté
     private function createPage(int &$nbPage) : array
     {
-        $gatewayTodolist = new gatewayTodolist($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]); // A CHANGER PAR MODELE
-        $nbListesTotal = $gatewayTodolist->getNbPublicLists();
+        $todoListModel = new todolistModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
+        $nbListesTotal = $todoListModel->getNbPublicLists();
         $nbPage = ceil($nbListesTotal/$this->nbListesParPage);
-        $res = $gatewayTodolist->getPublicLists($this->setPage($nbListesTotal,$this->nbListesParPage), $this->nbListesParPage);
+        $res = $todoListModel->getPublicLists($this->setPage($nbListesTotal,$this->nbListesParPage), $this->nbListesParPage);
         return $res;
     }
 
@@ -39,10 +39,10 @@ class Controller
     {
         $nbPage = 1;
         $this->createPage($nbPage);
-        $gatewayTodolist = new gatewayTodolist($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]); // A CHANGER PAR MODELE
-        $nbListesTotal = $gatewayTodolist->getNbPrivateLists(1); //TODO : ajouter la gestion des utilisateurs
+        $todoListModel = new todolistModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
+        $nbListesTotal = $todoListModel->getNbPrivateLists(1); //TODO : ajouter la gestion des utilisateurs
         $nbPage = ceil($nbListesTotal/$this->nbListesParPage);
-        $res = $gatewayTodolist->getPrivateLists(1,$this->setPage($nbListesTotal,$this->nbListesParPage), $this->nbListesParPage);
+        $res = $todoListModel->getPrivateLists(1,$this->setPage($nbListesTotal,$this->nbListesParPage), $this->nbListesParPage);
         require($vues['vueTaskPrivee']);
     }
 
@@ -55,11 +55,11 @@ class Controller
                     $this->createPublicPage();
                     break;
                 case ("connexion"):
-                    require($vues['vueConnexion']);
+                    require($GLOBALS["vues"]['vueConnexion']);
                     break;
                 case ("connected"):
-                    $gatewayTodolist = new gatewayTodolist($dsn, $user, $passwd); // A CHANGER PAR MODELE
-                    $res = $gatewayTodolist->getPublicLists(0, 4);
+                    $todolistModel = new todolistModel($dsn, $user, $passwd); // A CHANGER
+                    $res = $todolistModel->getPublicLists(0, 4);
                     break;
                 default:
                     $this->createPublicPage();

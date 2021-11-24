@@ -12,7 +12,7 @@ class todoList{
         $this->isPrivate=$isPrivate;
         $this->isDone=$isDone;
         $this->idUser=$idUser;
-        $gt=new gatewayTask($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
+        $gt=new taskModel($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
         $this->tasks=$gt->getTasks($this->idList);
     }
     public function __toString():string

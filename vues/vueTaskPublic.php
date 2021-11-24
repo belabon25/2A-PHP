@@ -33,7 +33,9 @@
             <h2>Listes privées :</h2>
         </div>
         <div>
-            <button href="index.php?action=connexion">Connexion</button>
+            <a href="index.php?action=connexion">
+                <button>Connexion</button>
+            </a>
         </div>
     </div>
 </body>

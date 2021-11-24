@@ -18,16 +18,6 @@
             <div class="p-3 mb-2 bg-warning text-black">
             <h2>Listes publiques :</h2>
             </div>
-            <?php
-            $gatewayTodolist = new gatewayTodolist($dsn, $user, $passwd);
-            $res = $gatewayTodolist->getPublicLists(0,4);
-            echo "<div class=\"container\">
-            <div class=\"row\">";
-            foreach ($res as $todo) {
-                echo "<div class=\"col alert alert-primary\">".$todo."</div>";
-            }
-            echo "</div></div>";
-            ?>
         </div>
     </div>
     <div class="jumbotron text-center">
