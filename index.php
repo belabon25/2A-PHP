@@ -8,5 +8,5 @@
 <?php
 require("config/utils.php");
 
-require($vues['vueTaskPublic']);
+require("controlleur/controller.php");
 ?>
