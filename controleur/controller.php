@@ -1,7 +1,7 @@
 <?php
 class Controller
 {
-    private $nbListesparPage = 4;
+    private $nbListesParPage = 4;
     public function setPage(int $nbListes) : int
     {
         if (isset($_GET["page"])) {
@@ -10,46 +10,53 @@ class Controller
         } else {
             $numPage = 1;
         }
-        return $numPage;
+        return $numPage-1;
     }
 
-    private function createPage()
+    private function createPage(int &$nbPage) : array
     {
         $gatewayTodolist = new gatewayTodolist($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]); // A CHANGER PAR MODELE
         $nbListesTotal = $gatewayTodolist->getNbPublicLists();
-        $nbPage = ceil($nbListesTotal/$this->nbListesparPage);
+        $nbPage = ceil($nbListesTotal/$this->nbListesParPage);
         $res = $gatewayTodolist->getPublicLists($this->setPage($nbListesTotal,$this->nbListesParPage), $this->nbListesParPage);
+        return $res;
     }
 
     public function createPublicPage()
     {
-        $this->createPage();
-        require($vues['vueTaskPublic']);
+        $res = $this->createPage($nbPage);
+        require($GLOBALS["vues"]['vueTaskPublic']);
     }
 
     public function createPrivatePage()
     {
-        $this->createPage();
+        $this->createPage($nbPage);
         $gatewayTodolist = new gatewayTodolist($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]); // A CHANGER PAR MODELE
         $nbListesTotal = $gatewayTodolist->getNbPrivateLists(1); //TODO : ajouter la gestion des utilisateurs
-        $nbPage = ceil($nbListesTotal/$this->nbListesparPage);
-        $res = $gatewayTodolist->getPrivateLists($this->setPage($nbListesTotal,$this->nbListesParPage), $this->nbListesParPage);
+        $nbPage = ceil($nbListesTotal/$this->nbListesParPage);
+        $res = $gatewayTodolist->getPrivateLists(1,$this->setPage($nbListesTotal,$this->nbListesParPage), $this->nbListesParPage);
         require($vues['vueTaskPrivee']);
     }
 
     public function __construct()
     {
-        switch ($_GET("action")) {
-            case (NULL):
-                $this->createPublicPage();
-                break;
-            case ("connexion"):
-                require($vues['vueConnexion']);
-                break;
-            case ("connected"):
-                $gatewayTodolist = new gatewayTodolist($dsn, $user, $passwd); // A CHANGER PAR MODELE
-                $res = $gatewayTodolist->getPublicLists(0, 4);
-                break;
+        if (isset($_GET['action'])) {
+            switch ($_GET['action']) {
+                case (NULL):
+                    $this->createPublicPage();
+                    break;
+                case ("connexion"):
+                    require($vues['vueConnexion']);
+                    break;
+                case ("connected"):
+                    $gatewayTodolist = new gatewayTodolist($dsn, $user, $passwd); // A CHANGER PAR MODELE
+                    $res = $gatewayTodolist->getPublicLists(0, 4);
+                    break;
+                default:
+                    $this->createPublicPage();
+            }
+        } else {
+            $this->createPublicPage();
         }
     }
 }

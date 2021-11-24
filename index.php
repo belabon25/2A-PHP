@@ -7,6 +7,7 @@
 </head>
 <?php
 require("config/utils.php");
+require("controleur/controller.php");
 
-require("controlleur/controller.php");
+new Controller();
 ?>

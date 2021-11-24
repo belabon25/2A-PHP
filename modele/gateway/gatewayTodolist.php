@@ -32,7 +32,7 @@ class gatewayTodolist{
         $query="select count(*) from todolist where isPrivate=0";
         $this->con->executeQuery($query);
         $res=$this->con->getResults();
-        return $res[0];
+        return $res[0][0];
     }
 
     public function getNbPrivateLists(int $userId):int{
@@ -40,6 +40,6 @@ class gatewayTodolist{
         $query="select count(*) from todolist where isPrivate=1 and userId=:id";
         $this->con->executeQuery($query,array(":id"=>array($userId,PDO::PARAM_INT)));
         $res=$this->con->getResults();
-        return $res[0];
+        return $res[0][0];
     }
 }
