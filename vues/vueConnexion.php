@@ -16,7 +16,7 @@
     <div class="jumbotron text-center">
         <div>
             <div class="p-3 mb-2 bg-warning text-black">
-            <h2>Listes publiques :</h2>
+            <h2>Connexion</h2>
             </div>
             <?php
             $gatewayTodolist = new gatewayTodolist($dsn, $user, $passwd);
@@ -33,9 +33,6 @@
     <div class="jumbotron text-center">
         <div class="p-3 mb-2 bg-success text-black">
             <h2>Listes privées :</h2>
-        </div>
-        <div>
-            <button href="index.php?action=connexion">Connexion</button>
         </div>
     </div>
 </body>
