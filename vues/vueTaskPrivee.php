@@ -34,9 +34,6 @@
         <div class="p-3 mb-2 bg-success text-black">
             <h2>Listes privées :</h2>
         </div>
-        <div>
-            <button href="index.php?action=connexion">Connexion</button>
-        </div>
     </div>
 </body>
 
