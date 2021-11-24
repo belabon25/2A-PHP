@@ -24,12 +24,14 @@ class Controller
 
     public function createPublicPage()
     {
+        $nbPage = 1;
         $res = $this->createPage($nbPage);
         require($GLOBALS["vues"]['vueTaskPublic']);
     }
 
     public function createPrivatePage()
     {
+        $nbPage = 1;
         $this->createPage($nbPage);
         $gatewayTodolist = new gatewayTodolist($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]); // A CHANGER PAR MODELE
         $nbListesTotal = $gatewayTodolist->getNbPrivateLists(1); //TODO : ajouter la gestion des utilisateurs
