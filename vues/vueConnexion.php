@@ -18,6 +18,13 @@
             <div class="p-3 mb-2 bg-warning text-black">
             <h2>Connexion</h2>
             </div>
+            <!-- PAS FINI OSKOUR -->
+            <form >
+                <label for="fname">Username</label>
+                <input type="text" id="fname" name="fname"><br>
+                <label for="fpasswd">Password</label>
+                <input type="text" id="fpasswd" name="fpasswd"><br>
+            </form>
             <?php
             $gatewayTodolist = new gatewayTodolist($dsn, $user, $passwd);
             $res = $gatewayTodolist->getPublicLists(0,4);
@@ -28,11 +35,6 @@
             }
             echo "</div></div>";
             ?>
-        </div>
-    </div>
-    <div class="jumbotron text-center">
-        <div class="p-3 mb-2 bg-success text-black">
-            <h2>Listes privées :</h2>
         </div>
     </div>
 </body>
