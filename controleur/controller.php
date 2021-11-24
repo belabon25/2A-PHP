@@ -1,7 +1,10 @@
 <?php
 class Controller
 {
+    //La page web affichera ce nombre de lignes par pages
     private $nbListesParPage = 4;
+
+    //Vérifie si la page donnée est valide
     public function setPage(int $nbListes) : int
     {
         if (isset($_GET["page"])) {
@@ -13,6 +16,7 @@ class Controller
         return $numPage-1;
     }
 
+    //Fonction utilisée pour une création de page d'utilisateur simple ET d'utilisateur connecté
     private function createPage(int &$nbPage) : array
     {
         $gatewayTodolist = new gatewayTodolist($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]); // A CHANGER PAR MODELE
@@ -22,6 +26,7 @@ class Controller
         return $res;
     }
 
+    //Fonction appelée pour créer la page d'un utilisateur non connecté
     public function createPublicPage()
     {
         $nbPage = 1;
@@ -29,6 +34,7 @@ class Controller
         require($GLOBALS["vues"]['vueTaskPublic']);
     }
 
+    //Fonction appelée pour créer la page d'un utilisateur connecté
     public function createPrivatePage()
     {
         $nbPage = 1;
@@ -40,6 +46,7 @@ class Controller
         require($vues['vueTaskPrivee']);
     }
 
+    //Le constructeur regarde quel paramètre est donné pour ensuite choisir quelle page affichée
     public function __construct()
     {
         if (isset($_GET['action'])) {
