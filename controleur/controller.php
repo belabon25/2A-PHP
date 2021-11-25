@@ -34,7 +34,9 @@ class Controller
         $pageAffichage=0;
         $nbPage = 1;
         $res = $this->createPage($pageAffichage, $nbPage);
+        require($GLOBALS["vues"]['vueEnTete']);
         require($GLOBALS["vues"]['vueTaskPublic']);
+        require($GLOBALS["vues"]['vueTaskPriveeNonCo']);
     }
 
     //Fonction appelée pour créer la page d'un utilisateur connecté
@@ -47,7 +49,9 @@ class Controller
         $nbListesTotal = $todoListModel->getNbPrivateLists(1); //TODO : ajouter la gestion des utilisateurs
         $nbPage = ceil($nbListesTotal/$this->nbListesParPage);
         $res = $todoListModel->getPrivateLists(1,$this->setPage($nbListesTotal,$this->nbListesParPage), $this->nbListesParPage);
-        require($vues['vueTaskPrivee']);
+        require($GLOBALS["vues"]['vueEnTete']);
+        require($GLOBALS["vues"]['vueTaskPublic']);
+        require($GLOBALS["vues"]['vueTaskPrivee']);
     }
 
     //Le constructeur regarde quel paramètre est donné pour ensuite choisir quelle page affichée
@@ -59,6 +63,7 @@ class Controller
                     $this->createPublicPage();
                     break;
                 case ("connexion"):
+                    require($GLOBALS["vues"]['vueEnTete']);
                     require($GLOBALS["vues"]['vueConnexion']);
                     break;
                 case ("connected"):

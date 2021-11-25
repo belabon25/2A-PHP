@@ -22,3 +22,5 @@ $vues['error']=$dir.'vues/erreur.php';
 $vues['vueTaskPublic']=$dir.'vues/vueTaskPublic.php';
 $vues['vueTaskPrivee']=$dir.'vues/vueTaskPrivee.php';
 $vues['vueConnexion']=$dir.'vues/vueConnexion.php';
+$vues['vueEnTete']=$dir.'vues/vueEnTete.php';
+$vues['vueTaskPriveeNonCo']=$dir.'vues/vueTaskPriveeNonCo.php';

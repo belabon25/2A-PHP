@@ -14,15 +14,14 @@ class Validation {
         }
     }
 
-    static function validateFormNewList(string &$nom, array &$taches){ //return?
+    static function validateFormNewList(string &$nom, array &$taches){ 
         $nom=filter_var($nom,FILTER_SANITIZE_STRING);
         foreach ($taches as &$t) {
             $t=filter_var($t,FILTER_SANITIZE_STRING);
         }
     }
 
-    static function validateUser(string &$username, string &$password) //return?
-    {
+    static function validateUser(string &$username, string &$password){
         $username=filter_var($username,FILTER_SANITIZE_STRING);
         $password=filter_var($password,FILTER_SANITIZE_STRING);
     }

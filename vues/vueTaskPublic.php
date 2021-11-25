@@ -1,60 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <link rel="stylesheet" href="../config/bootstrap-5.1.3-dist/css/bootstrap.min.css">
-    <meta charset="utf-8">
-</head>
-
-<body>
-    <div class="jumbotron text-center">
-        <div class="p-3 mb-2 bg-secondary text-white">
-            <h1>To do list !</h1>
-            <p>Projet PHP de GOURVES Yoann et LABONNE Benjamin</p>
-        </div>
-    </div>
-    <div class="jumbotron text-center">
+<?php
+echo "<div class=\"jumbotron text-center\">
         <div>
-            <div class="p-3 mb-2 bg-warning text-black">
+            <div class=\"p-3 mb-2 bg-warning text-black\">
             <h2>Listes publiques :</h2>
-            </div>
-            <?php
+            </div>";
             echo "<div class=\"container\">
             <div class=\"row\">";
             foreach ($res as $todo) {
                 echo "<div class=\"col alert alert-primary\">".$todo."</div>";
             }
-            echo "</div></div>";
-            ?>
-             <div>
-                <?php
-                    $pagePrec=$pageAffichage-1;
-                    $pageSuiv=$pageAffichage+1;
-                    if ($pageAffichage>1) {
-                        echo "<a href=\"index.php?page=$pagePrec\">&lt    </a>
-                        <a href=\"index.php?page=1\">1</a>";
-                    }                    
+            echo "</div></div>
+             <div>";
+            $pagePrec=$pageAffichage-1;
+            $pageSuiv=$pageAffichage+1;
+            if ($pageAffichage>1) {
+                echo "<a href=\"index.php?page=$pagePrec\">&lt    </a>
+                <a href=\"index.php?page=1\">1</a>";
+            }                    
                     
-                    echo "<a>    $pageAffichage    </a>";
+            echo "<a>    $pageAffichage    </a>";
                     
-                    if ($pageAffichage<$nbPage) {
-                        echo "<a href=\"index.php?page=$nbPage\">$nbPage</a>
-                        <a href=\"index.php?page=$pageSuiv\">    &gt</a>";
-                    }
-                ?>
-            </div>
+            if ($pageAffichage<$nbPage) {
+                echo "<a href=\"index.php?page=$nbPage\">$nbPage</a>
+                <a href=\"index.php?page=$pageSuiv\">    &gt</a>";
+            }
+            echo "</div>
         </div>
-    </div>
-    <div class="jumbotron text-center">
-        <div class="p-3 mb-2 bg-success text-black">
-            <h2>Listes privées :</h2>
-        </div>
-        <div>
-            <a href="index.php?action=connexion">
-                <button>Connexion</button>
-            </a>
-        </div>
-    </div>
-</body>
-
-</html>
+    </div>";
