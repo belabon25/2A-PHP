@@ -9,4 +9,7 @@ class taskModel{
     public function getTasks(int $listId):array{
         return $this->gtTask->getTasks($listId);
     }
+    public function addTask($name, $listId):void{
+        $this->gtTask->addTask($name,$listId);
+    }
 }

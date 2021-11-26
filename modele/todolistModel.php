@@ -17,4 +17,12 @@ class todolistModel{
     public function getNbPrivateLists(int $userId):int{
         return $this->gtToDoList->getNbPrivateLists($userId);
     }
+    public function addList(string $name, bool $isPrivate, array $tabTask, int $userId=NULL):void{
+        $isPrivate=$userId==NUll?0:$isPrivate;
+        $id=$this->gtToDoList->addList($name,$isPrivate,$userId);
+        $tm=new taskModel($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
+        foreach($tabTask as $t){
+            $tm->addTask($t,$id);
+        }
+    }
 }

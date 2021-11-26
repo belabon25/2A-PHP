@@ -9,7 +9,16 @@
 <body>
     <div class="jumbotron text-center">
         <div class="p-3 mb-2 bg-secondary text-white">
-            <h1>To do list !</h1>
-            <p>Projet PHP de GOURVES Yoann et LABONNE Benjamin</p>
+            <div>
+                <h1>To do list !</h1>
+                <p>Projet PHP de GOURVES Yoann et LABONNE Benjamin</p>
+            </div>
+            <div class="align-left">
+                <a href="index.php?action=addList">
+                    <button>
+                        Ajouter une liste
+                    </button>
+                </a>
+            </div>
         </div>
     </div>

@@ -6,14 +6,14 @@ class todoList{
     private $isDone;
     private $idUser;
     private $idList;
-    public function __construct(int $idList,string $name, bool $isPrivate, bool $isDone, int $idUser){
+    public function __construct(int $idList,string $name, bool $isPrivate, bool $isDone, ?int $idUser){
         $this->idList=$idList;
         $this->name=$name;
         $this->isPrivate=$isPrivate;
         $this->isDone=$isDone;
         $this->idUser=$idUser;
-        $gt=new taskModel($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
-        $this->tasks=$gt->getTasks($this->idList);
+        $tm=new taskModel($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
+        $this->tasks=$tm->getTasks($this->idList);
     }
     public function __toString():string
     {

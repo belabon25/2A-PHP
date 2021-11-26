@@ -15,5 +15,9 @@ class gatewayTask{
         }
         return $arr;
     }
+    public function addTask($name, $listId):void{
+        $query="insert into task(name,idList) values(:n,:id)";
+        $this->con->executeQuery($query,array(':n'=>array($name,PDO::PARAM_STR),':id'=>array($listId,PDO::PARAM_INT)));
+    }
     private $con;
 }

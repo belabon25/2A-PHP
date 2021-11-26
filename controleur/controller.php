@@ -54,6 +54,23 @@ class Controller
         require($GLOBALS["vues"]['vueTaskPrivee']);
     }
 
+    public function validateAndAddList()
+    {
+       if (isset($_POST["fname"]) && isset($_POST["fvisibility"])) {
+            $i=1;
+            $tabTask=array();
+            $name=$_POST["fname"];
+            $visibility=$_POST["fvisibility"]=="public"?1:0;
+            while(isset($_POST["ft".$i])){
+                $tabTask[]=$_POST[("ft".$i)];
+                $i+=1;
+            }
+            Validation::validateFormNewList($name,$tabTask);
+            $todoListModel=new todolistModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
+            $todoListModel->addList($name,$visibility,$tabTask);
+        }
+    }
+
     //Le constructeur regarde quel paramètre est donné pour ensuite choisir quelle page affichée
     public function __construct()
     {
@@ -69,6 +86,14 @@ class Controller
                 case ("connected"):
                     $todolistModel = new todolistModel($dsn, $user, $passwd); // A CHANGER
                     $res = $todolistModel->getPublicLists(0, 4);
+                    break;
+                case ("addList"):
+                    require($GLOBALS["vues"]['vueEnTete']);
+                    require($GLOBALS["vues"]['vueAddList']);
+                    break;
+                case("verifList"):
+                    $this->validateAndAddList();
+                    header("Location: index.php");
                     break;
                 default:
                     $this->createPublicPage();
