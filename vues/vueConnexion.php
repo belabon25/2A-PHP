@@ -5,7 +5,7 @@
             </div>
             <div class="w-25 col-md-8 mx-auto">
             <!-- mettre le fichier qui gere ca ici -->
-                <form action="" method="POST">
+                <form action="index.php?action=verifConnexion" method="POST">
                     <div class="form-row align-items-center">
                         <div class="form-group row-auto">
                             <label for="fname">Username</label>

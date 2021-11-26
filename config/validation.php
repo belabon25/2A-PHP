@@ -1,10 +1,6 @@
 <?php
 
 class Validation {
-    static function val_form(/*parametres*/) {
-
-    }
-
     static function validatePageNb(int $page, int $nbElement, int $elemParPage):int{
         if(filter_var($page,FILTER_VALIDATE_INT,array("options" => array("min_range"=>1, "max_range"=>($nbElement/$elemParPage)))) === false){
             return 1;  

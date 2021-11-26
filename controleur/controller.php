@@ -42,13 +42,13 @@ class Controller
     //Fonction appelée pour créer la page d'un utilisateur connecté
     public function createPrivatePage()
     {
-        $pageAffichage=0;
-        $nbPage = 1;
-        $res = $this->createPage($pageAffichage, $nbPage);
+        $pageAffichageP=0;
+        $nbPageP = 1;
+        $res = $this->createPage($pageAffichageP, $nbPageP);
         $todoListModel = new todolistModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
-        $nbListesTotal = $todoListModel->getNbPrivateLists(1); //TODO : ajouter la gestion des utilisateurs
-        $nbPage = ceil($nbListesTotal/$this->nbListesParPage);
-        $res = $todoListModel->getPrivateLists(1,$this->setPage($nbListesTotal,$this->nbListesParPage), $this->nbListesParPage);
+        $nbListesTotal = $todoListModel->getNbPrivateLists($_SESSION['id']);
+        $nbPageP = ceil($nbListesTotal/$this->nbListesParPage);
+        $resP = $todoListModel->getPrivateLists($this->setPage($nbListesTotal,$this->nbListesParPage), $this->nbListesParPage,$_SESSION['id']);
         require($GLOBALS["vues"]['vueEnTete']);
         require($GLOBALS["vues"]['vueTaskPublic']);
         require($GLOBALS["vues"]['vueTaskPrivee']);
@@ -71,21 +71,33 @@ class Controller
         }
     }
 
+    public function validateConnexion()
+    {
+        if(isset($_POST["fname"]) && isset($_POST["fpasswd"])){
+            $name=$_POST["fname"];
+            $passwd=$_POST["fpasswd"];
+            Validation::validateUser($name,$passwd);
+            $userModel=new userModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
+            $id=$userModel->getUser($name,$passwd);
+            if ($id==NULL) {
+                return;//vue erreur?
+            }
+            $_SESSION['id']=$id;
+            $_SESSION['role']='connected';
+        }
+    }
+
     //Le constructeur regarde quel paramètre est donné pour ensuite choisir quelle page affichée
     public function __construct()
     {
         if (isset($_GET['action'])) {
             switch ($_GET['action']) {
-                case (NULL):
-                    $this->createPublicPage();
-                    break;
                 case ("connexion"):
                     require($GLOBALS["vues"]['vueEnTete']);
                     require($GLOBALS["vues"]['vueConnexion']);
                     break;
                 case ("connected"):
-                    $todolistModel = new todolistModel($dsn, $user, $passwd); // A CHANGER
-                    $res = $todolistModel->getPublicLists(0, 4);
+                    $this->createPrivatePage();
                     break;
                 case ("addList"):
                     require($GLOBALS["vues"]['vueEnTete']);
@@ -95,8 +107,12 @@ class Controller
                     $this->validateAndAddList();
                     header("Location: index.php");
                     break;
+                case("verifConnexion"):
+                    $this->validateConnexion();
+                    header("Location: index.php");
+                    break;
                 default:
-                    $this->createPublicPage();
+                    isset($_SESSION['id'])?$this->createPrivatePage():$this->createPublicPage();
             }
         } else {
             $this->createPublicPage();
