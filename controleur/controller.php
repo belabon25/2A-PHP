@@ -61,7 +61,7 @@ class Controller
             $tabTask=array();
             $name=$_POST["fname"];
             $visibility=$_POST["fvisibility"]=="public"?1:0;
-            while(isset($_POST["ft".$i])){
+            while(isset($_POST["ft".$i]) and !empty($_POST["ft".$i])){
                 $tabTask[]=$_POST[("ft".$i)];
                 $i+=1;
             }
