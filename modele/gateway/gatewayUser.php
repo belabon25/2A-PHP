@@ -27,4 +27,9 @@ class gatewayUser{
         }
         return new user($res["id"],$res["name"]);
     }
+
+    public function addUser(string $userName, string $passwd):void{
+        $query="insert into user values(NULL, :n,:p)";
+        $this->con->executeQuery($query,array(':n'=>array($userName,PDO::PARAM_STR),':p'=>array($passwd,PDO::PARAM_STR)));
+    }
 }

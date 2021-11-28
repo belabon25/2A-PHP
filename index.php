@@ -6,6 +6,7 @@
 <meta charset="utf-8">
 </head>
 <?php
+session_start();
 require("config/utils.php");
 require("controleur/controller.php");
 

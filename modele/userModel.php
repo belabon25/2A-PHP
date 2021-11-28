@@ -11,4 +11,7 @@ class userModel{
     public function getUserFromid(int $userId):user{
         return $this->gtUser->getUserFromid($userId);
     }
+    public function addUser(string $userName, string $passwd):void{
+        $this->gtUser->addUser($userName,$passwd);
+    }
 }
