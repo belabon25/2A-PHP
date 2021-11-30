@@ -12,4 +12,7 @@ class taskModel{
     public function addTask($name, $listId):void{
         $this->gtTask->addTask($name,$listId);
     }
+    public function updateDone($id, $value):void{
+        $this->gtTask->updateDone($id,$value);
+    }
 }

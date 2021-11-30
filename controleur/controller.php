@@ -86,6 +86,14 @@ class Controller
             $_SESSION['role']='connected';
         }
     }
+    public function updateTache()
+    {
+        if(isset($_POST["idTache"])){
+            $idTache=$_POST["idTache"];
+            $tModel=new taskModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
+            $tModel->updateDone($idTache,$_POST[$idTache]=='0'?boolval(0):boolval(1));
+        }
+    }
 
     //Le constructeur regarde quel paramètre est donné pour ensuite choisir quelle page affichée
     public function __construct()
@@ -109,6 +117,10 @@ class Controller
                     break;
                 case("verifConnexion"):
                     $this->validateConnexion();
+                    header("Location: index.php");
+                    break;
+                case("checkTache"):
+                    $this->updateTache();
                     header("Location: index.php");
                     break;
                 default:
