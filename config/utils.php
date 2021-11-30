@@ -6,15 +6,15 @@ $passwd="achanger";
 
 //require
 require($dir.'controleur/connection.php');
-require($dir.'modele/gateway/gatewayTask.php');
-require($dir.'modele/gateway/gatewayUser.php');
-require($dir.'modele/gateway/gatewayTodolist.php');
+require($dir.'DAL/gateway/gatewayTask.php');
+require($dir.'DAL/gateway/gatewayUser.php');
+require($dir.'DAL/gateway/gatewayTodolist.php');
 require($dir.'modele/taskModel.php');
 require($dir.'modele/userModel.php');
 require($dir.'modele/todolistModel.php');
-require($dir.'modele/todoList.php');
-require($dir.'modele/task.php');
-require($dir.'modele/user.php');
+require($dir.'DAL/todoList.php');
+require($dir.'DAL/task.php');
+require($dir.'DAL/user.php');
 require($dir.'config/validation.php');
 
 //vues

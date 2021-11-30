@@ -24,6 +24,7 @@ class Controller
         $nbPage = ceil($nbListesTotal/$this->nbListesParPage);
         $page=$this->setPage($nbListesTotal,$this->nbListesParPage);
         $pageAffichage=$page+1;//sert pour l'affichage
+        $_SESSION['pageT']=$pageAffichage;
         $res = $todoListModel->getPublicLists($page, $this->nbListesParPage);
         return $res;
     }
@@ -121,7 +122,8 @@ class Controller
                     break;
                 case("checkTache"):
                     $this->updateTache();
-                    header("Location: index.php");
+                    $s="Location: index.php?page=".$_GET['page'];
+                    header($s);
                     break;
                 default:
                     isset($_SESSION['id'])?$this->createPrivatePage():$this->createPublicPage();

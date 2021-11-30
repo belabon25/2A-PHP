@@ -18,7 +18,7 @@ class Task{
     public function __toString():string
     {
 
-        $s = "<form action=\"index.php?action=checkTache\" method=\"POST\">"."<p>".$this->nom;
+        $s = "<form action=\"index.php?action=checkTache&page=".$_SESSION['pageT']."\" method=\"POST\">"."<p>".$this->nom;
         if($this->isDone)
         {
             $s = $s."<input id=\"idTache\" name=\"idTache\" type=\"hidden\" value=\"$this->id\">
