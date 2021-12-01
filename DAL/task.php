@@ -18,12 +18,10 @@ class Task{
     public function __toString():string
     {
 
-        $s = "<form action=\"index.php?action=checkTache&page=".$_SESSION['pageT']."\" method=\"POST\">"."<p>".$this->nom;
+        $s = "<input id=\"idTache\" name=\"idTache\" type=\"hidden\" value=\"$this->id\"> <button type=\"button\" class=\"btn btn-danger\">Supprimer Tache</button><form action=\"index.php?action=checkTache&page=".$_SESSION['pageT']."\" method=\"POST\">"."<p>".$this->nom;
         if($this->isDone)
         {
-            $s = $s."<input id=\"idTache\" name=\"idTache\" type=\"hidden\" value=\"$this->id\"> <button type=\"button\" class=\"btn btn-danger\">Supprimer Tache</button>
-            <input type=\"submit\" value=\"0\" class=\"btn-check\" name=\"$this->id\" id=\"$this->id\" autocomplete=\"off\" checked>
-            <label class=\"btn btn-outline-success\" for=\"$this->id\">Tache réalisée</label>";
+            $s = $s."<input type=\"submit\" value=\"0\" class=\"btn-check\" name=\"$this->id\" id=\"$this->id\" autocomplete=\"off\" checked><label class=\"btn btn-outline-success\" for=\"$this->id\">Tache réalisée</label>";
         }
         else
         {
