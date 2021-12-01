@@ -58,6 +58,16 @@ class gatewayTodolist{
         return $res[0][0];
     }
 
+    public function allTaskDone($idList):bool
+    {
+        $res=0;
+        $query="select count(*) from task where idList=:id and isDone=0";
+        $this->con->executeQuery($query,array(":id"=>array($idList,PDO::PARAM_INT)));
+        $res=$this->con->getResults();
+        echo "<p>".var_dump($res)."</p>";
+        return boolval($res[0]["count(*)"])>0?boolval(0):boolval(1);
+    }
+
     //supprime une liste
     public function delList(int $listId)
     {

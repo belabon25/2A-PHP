@@ -29,4 +29,8 @@ class todolistModel{
     {
         $this->gtToDoList->delList($listId);
     }
+    public function allTaskDone($idList):bool
+    {
+        return $this->gtToDoList->allTaskDone($idList);
+    }
 }
