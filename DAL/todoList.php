@@ -20,7 +20,7 @@ class todoList{
         $tm=new todoListModel($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
         $couleur = $tm->allTaskDone($this->idList)?"success":"primary";
         $s = "<div class=\"col alert alert-$couleur\">";
-        $s = $s."  <h3>$this->name. <button type="button" class="btn btn-danger">Supprimer Liste</button></h3>
+        $s = $s."  <h3>$this->name. <button type=\"button\" class=\"btn btn-danger\">Supprimer Liste</button></h3>
                 <p>$this->isPrivate</p>
                 <p>$this->isDone</p>
                 <p>$this->idUser</p>";
