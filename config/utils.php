@@ -4,7 +4,7 @@ $dsn="mysql:host=localhost;dbname=dbyogourves";//$dsn="mysql:host=berlin.iut.loc
 $user="yogourves";
 $passwd="achanger";
 
-//require
+//requires
 require($dir.'controleur/connection.php');
 require($dir.'DAL/gateway/gatewayTask.php');
 require($dir.'DAL/gateway/gatewayUser.php');

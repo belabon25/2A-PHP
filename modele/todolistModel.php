@@ -25,4 +25,19 @@ class todolistModel{
             $tm->addTask($t,$id);
         }
     }
+
+    public function addTask()
+    {
+        $this->gtToDoList->addTask();
+    }
+
+    public function delTask()
+    {
+        $this->gtToDoList->delTask();
+    }
+    
+    public function delList()
+    {
+        $this->gtToDoList->delList();
+    }
 }

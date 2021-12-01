@@ -5,6 +5,7 @@ class gatewayTodolist{
        $this->con=new Connection($dsn,$user,$passwd); 
     }
 
+    //retourne la liste des publique listes
     public function getPublicLists(int $page,int $nb):array{
         $arr=[];
         $query="select * from todolist where isPrivate=0 order by name desc limit :page, :nb";
@@ -16,6 +17,7 @@ class gatewayTodolist{
         return $arr;
     }
 
+    //retourne la liste des todoList de l'utilisateur id
     public function getPrivateLists(int $page,int $nb, int $userId):array{
         $arr=[];
         $query="select * from todolist where isPrivate=1 and userId=:id order by name desc limit (:page -1) , :nb";
@@ -27,6 +29,7 @@ class gatewayTodolist{
         return $arr; 
     }
 
+    //retourne le nombre de list publique
     public function getNbPublicLists():int{
         $res=0;
         $query="select count(*) from todolist where isPrivate=0";
@@ -35,6 +38,7 @@ class gatewayTodolist{
         return $res[0][0];
     }
 
+    //retourne le nombre de liste privée de l'utilisateur id
     public function getNbPrivateLists(int $userId):int{
         $res=0;
         $query="select count(*) from todolist where isPrivate=1 and userId=:id";
@@ -43,6 +47,7 @@ class gatewayTodolist{
         return $res[0][0];
     }
 
+    //ajoute une liste a BDD
     public function addList(string $name, bool $isPrivate, int $idUser=NULL):int
     {
         $query="insert into todolist(name,isPrivate,isDone,idUser) values (:n,:p,:d,:id)";
@@ -51,5 +56,20 @@ class gatewayTodolist{
         $this->con->executeQuery($query);
         $res=$this->con->getResults();
         return $res[0][0];
+    }
+
+    public function addTask()
+    {
+
+    }
+
+    public function delTask()
+    {
+
+    }
+    
+    public function delList()
+    {
+
     }
 }
