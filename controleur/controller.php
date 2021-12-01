@@ -123,7 +123,7 @@ class Controller
                 case("verifConnexion"):
                     $this->validateConnexion();
                     var_dump($_SESSION);
-                    //header("Location: index.php");
+                    header("Location: index.php");
                     break;
                 case("checkTache"):
                     $this->updateTache();
@@ -131,11 +131,9 @@ class Controller
                     header($s);
                     break;
                 default:
-                    var_dump($_SESSION);
                     isset($_SESSION['id'])?$this->createPrivatePage():$this->createPublicPage();
             }
         } else {
-            var_dump($_SESSION);
             isset($_SESSION['id'])?$this->createPrivatePage():$this->createPublicPage();
         }
     }

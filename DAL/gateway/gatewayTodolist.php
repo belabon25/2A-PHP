@@ -20,7 +20,7 @@ class gatewayTodolist{
     //retourne la liste des todoList de l'utilisateur id
     public function getPrivateLists(int $page,int $nb, int $userId):array{
         $arr=[];
-        $query="select * from todolist where isPrivate=1 and userId=:id order by name desc limit (:page -1) , :nb";
+        $query="select * from todolist where isPrivate=1 and idUser=:id order by name desc limit :page, :nb";
         $this->con->executeQuery($query,array(":id"=>array($userId,PDO::PARAM_INT),":page"=>array($page,PDO::PARAM_INT),":nb"=>array($nb,PDO::PARAM_INT)));
         $res=$this->con->getResults();
         foreach($res as $list){
@@ -41,7 +41,7 @@ class gatewayTodolist{
     //retourne le nombre de liste privée de l'utilisateur id
     public function getNbPrivateLists(int $userId):int{
         $res=0;
-        $query="select count(*) from todolist where isPrivate=1 and userId=:id";
+        $query="select count(*) from todolist where isPrivate=1 and idUser=:id";
         $this->con->executeQuery($query,array(":id"=>array($userId,PDO::PARAM_INT)));
         $res=$this->con->getResults();
         return $res[0][0];

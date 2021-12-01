@@ -99,41 +99,4 @@ class ControllerAbstract
             $tModel->updateDone($idTache,$_POST[$idTache]=='0'?boolval(0):boolval(1));
         }
     }
-
-    //Le constructeur regarde quel paramètre est donné pour ensuite choisir quelle page affichée
-    public function __construct()
-    {
-        if (isset($_GET['action'])) {
-            switch ($_GET['action']) {
-                case ("connexion"):
-                    require($GLOBALS["vues"]['vueEnTete']);
-                    require($GLOBALS["vues"]['vueConnexion']);
-                    break;
-                case ("connected"):
-                    $this->createPrivatePage();
-                    break;
-                case ("addList"):
-                    require($GLOBALS["vues"]['vueEnTete']);
-                    require($GLOBALS["vues"]['vueAddList']);
-                    break;
-                case("verifList"):
-                    $this->validateAndAddList();
-                    header("Location: index.php");
-                    break;
-                case("verifConnexion"):
-                    $this->validateConnexion();
-                    header("Location: index.php");
-                    break;
-                case("checkTache"):
-                    $this->updateTache();
-                    $s="Location: index.php?page=".$_GET['page'];
-                    header($s);
-                    break;
-                default:
-                    isset($_SESSION['id'])?$this->createPrivatePage():$this->createPublicPage();
-            }
-        } else {
-            $this->createPublicPage();
-        }
-    }
 }

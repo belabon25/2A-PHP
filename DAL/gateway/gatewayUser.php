@@ -20,7 +20,7 @@ class gatewayUser{
 
     //retourne l'utilisateur correspondant a l'id 'userid'
     public function getUserFromid(int $userId):user{
-        $query="select * from user where userId=:id";
+        $query="select * from user where id=:id";
         $this->con->executeQuery($query,array(':id'=>array($userId,PDO::PARAM_INT)));
         $res=$this->con->getResults();
         if(sizeof($res)==0){
