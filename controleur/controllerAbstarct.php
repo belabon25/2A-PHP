@@ -1,5 +1,5 @@
 <?php
-class Controller
+class ControllerAbstract
 {
     //La page web affichera ce nombre de lignes par pages
     private $nbListesParPage = 1;
@@ -81,11 +81,11 @@ class Controller
             $passwd=$_POST["fpasswd"];
             Validation::validateUser($name,$passwd);
             $userModel=new userModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
-            $user=$userModel->getUser($name,$passwd);
-            if ($user==NULL) {
+            $id=$userModel->getUser($name,$passwd);
+            if ($id==NULL) {
                 return;//vue erreur?
             }
-            $_SESSION['id']=$user->getId();
+            $_SESSION['id']=$id;
             $_SESSION['role']='connected';
         }
     }
@@ -122,8 +122,7 @@ class Controller
                     break;
                 case("verifConnexion"):
                     $this->validateConnexion();
-                    var_dump($_SESSION);
-                    //header("Location: index.php");
+                    header("Location: index.php");
                     break;
                 case("checkTache"):
                     $this->updateTache();
@@ -131,12 +130,10 @@ class Controller
                     header($s);
                     break;
                 default:
-                    var_dump($_SESSION);
                     isset($_SESSION['id'])?$this->createPrivatePage():$this->createPublicPage();
             }
         } else {
-            var_dump($_SESSION);
-            isset($_SESSION['id'])?$this->createPrivatePage():$this->createPublicPage();
+            $this->createPublicPage();
         }
     }
 }
