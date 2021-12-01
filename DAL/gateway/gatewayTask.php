@@ -28,5 +28,13 @@ class gatewayTask{
         $query="UPDATE task SET isDone=:value WHERE task.id = :id";
         $this->con->executeQuery($query,array(':id'=>array($id,PDO::PARAM_INT),':value'=>array($value,PDO::PARAM_BOOL)));
     }
+
+
+    //delete task d'id 'taskId'
+    public function delTask(int $taskId)
+    {
+        //TODO
+    }
+
     private $con;
 }

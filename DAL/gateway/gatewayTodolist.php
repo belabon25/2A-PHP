@@ -58,18 +58,9 @@ class gatewayTodolist{
         return $res[0][0];
     }
 
-    public function addTask()
+    //supprime une liste
+    public function delList(int $listId)
     {
-
-    }
-
-    public function delTask()
-    {
-
-    }
-    
-    public function delList()
-    {
-
+     //TODO   
     }
 }
