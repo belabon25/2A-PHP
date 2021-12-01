@@ -1,6 +1,7 @@
 <?php
 class ControllerUser extends ControllerAbstract
 {   
+    //Fonction utilisée pour une création de page
     public function createPage(){
         $todoListModel = new todolistModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
         $nbListesTotal = $todoListModel->getNbPublicLists();
@@ -41,10 +42,10 @@ class ControllerUser extends ControllerAbstract
                     header($s);
                     break;
                 default:
-                    $this->createPublicPage();
+                    $this->createPage();
             }
         } else {
-            $this->createPublicPage();
+            $this->createPage();
         }
     }
 }

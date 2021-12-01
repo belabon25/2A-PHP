@@ -1,6 +1,7 @@
 <?php
 class ControllerConnected extends ControllerAbstract
 {
+    //Fonction utilisée pour une création de page
     public function createPage()
     {
         $todoListModel = new todolistModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
@@ -30,8 +31,12 @@ class ControllerConnected extends ControllerAbstract
                     require($GLOBALS["vues"]['vueEnTete']);
                     require($GLOBALS["vues"]['vueConnexion']);
                     break;
+                case ("deconnexion"):
+                    userModel::deconnexion();
+                    header("Location: index.php");
+                    break;
                 case ("connected"):
-                    $this->createPrivatePage();
+                    $this->createPage();
                     break;
                 case ("addList"):
                     require($GLOBALS["vues"]['vueEnTete']);
@@ -51,10 +56,10 @@ class ControllerConnected extends ControllerAbstract
                     header($s);
                     break;
                 default:
-                    $this->createPrivatePage();
+                    $this->createPage();
             }
         } else {
-            $this->createPrivatePage();
+            $this->createPage();
         }
     }
 }

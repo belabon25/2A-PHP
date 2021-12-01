@@ -14,4 +14,17 @@ class userModel{
     public function addUser(string $userName, string $passwd):void{
         $this->gtUser->addUser($userName,$passwd);
     }
+    public function connection(string $name, string $passwd):void{
+        $user=$this->getUser($name,$passwd);
+        if ($user==NULL) {
+            return;//vue erreur?
+        }
+        $_SESSION['id']=$user->getId();
+        $_SESSION['role']='connected';
+    }
+    public static function deconnexion():void{
+        session_unset();
+        session_destroy();
+        $_SESSION=array();
+    }
 }

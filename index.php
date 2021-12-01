@@ -7,7 +7,6 @@
 </head>
 <?php
 session_start();
-//unset($_SESSION);
 require("config/utils.php");
 require("controleur/controller.php");
 

@@ -20,5 +20,16 @@
                     </button>
                 </a>
             </div>
+            <?php
+            if (isset($_SESSION['id'])) {
+                echo "<div class=\"align-left\">
+                <a href=\"index.php?action=deconnexion\">
+                    <button>
+                    deconnexion
+                    </button>
+                </a>
+            </div>";
+            }
+            ?>
         </div>
     </div>
