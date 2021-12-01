@@ -15,4 +15,8 @@ class taskModel{
     public function updateDone($id, $value):void{
         $this->gtTask->updateDone($id,$value);
     }
+    public function delTask(int $taskId)
+    {
+        $this->gtToDoList->delTask($taskId);
+    }
 }
