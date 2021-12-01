@@ -24,20 +24,9 @@ class todolistModel{
         foreach($tabTask as $t){
             $tm->addTask($t,$id);
         }
-    }
-
-    public function addTask()
+    } 
+    public function delList(int $listId)
     {
-        $this->gtToDoList->addTask();
-    }
-
-    public function delTask()
-    {
-        $this->gtToDoList->delTask();
-    }
-    
-    public function delList()
-    {
-        $this->gtToDoList->delList();
+        $this->gtToDoList->delList($listId);
     }
 }

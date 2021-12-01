@@ -55,6 +55,7 @@ class Controller
         require($GLOBALS["vues"]['vueTaskPrivee']);
     }
 
+    //Teste, valide et ajoute une liste
     public function validateAndAddList()
     {
        if (isset($_POST["fname"]) && isset($_POST["fvisibility"])) {
@@ -72,6 +73,7 @@ class Controller
         }
     }
 
+    //Teste, valide une connexion
     public function validateConnexion()
     {
         if(isset($_POST["fname"]) && isset($_POST["fpasswd"])){
@@ -87,6 +89,8 @@ class Controller
             $_SESSION['role']='connected';
         }
     }
+
+    //Met à jour le booléen isDone d'une tache
     public function updateTache()
     {
         if(isset($_POST["idTache"])){
