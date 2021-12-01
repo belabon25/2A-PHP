@@ -17,8 +17,10 @@ class todoList{
     }
     public function __toString():string
     {
-        
-        $s = "  <h3>$this->name.</h3>
+        $tm=new todoListModel($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
+        $couleur = $tm->allTaskDone($this->idList)?"success":"primary";
+        $s = "<div class=\"col alert alert-$couleur\">";
+        $s = $s."  <h3>$this->name.</h3>
                 <p>$this->isPrivate</p>
                 <p>$this->isDone</p>
                 <p>$this->idUser</p>";
@@ -26,6 +28,6 @@ class todoList{
             {
                 $s = $s.$task;
             }
-        return $s;
+        return $s."</div>";
     }
 }

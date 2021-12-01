@@ -7,7 +7,7 @@ echo "<div class=\"jumbotron text-center\">
             echo "<div class=\"container\">
             <div class=\"row\">";
             foreach ($res as $todo) {
-                echo "<div class=\"col alert alert-primary\">".$todo."</div>";
+                echo $todo;
             }
             echo "</div></div>
              <div>";
