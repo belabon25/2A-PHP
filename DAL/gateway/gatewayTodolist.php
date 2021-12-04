@@ -64,13 +64,24 @@ class gatewayTodolist{
         $query="select count(*) from task where idList=:id and isDone=0";
         $this->con->executeQuery($query,array(":id"=>array($idList,PDO::PARAM_INT)));
         $res=$this->con->getResults();
-        echo "<p>".var_dump($res)."</p>";
         return boolval($res[0]["count(*)"])>0?boolval(0):boolval(1);
     }
 
     //supprime une liste
-    public function delList(int $listId)
+    public function delList(int $listId):void
     {
-     //TODO   
+        $query="delete from todolist where id=:i";
+        $this->con->executeQuery($query,array(":i"=>array($listId,PDO::PARAM_INT)));
+    }
+
+    public function getList($idList):todoList{
+        $res=0;
+        $query="select * from todolist where id=:i";
+        $this->con->executeQuery($query,array(":id"=>array($idList,PDO::PARAM_INT)));
+        $res=$this->con->getResults();
+        foreach($res as $list){
+            $arr[]=new todoList($list["id"],$list["name"],$list["isPrivate"],$list["isDone"],$list["idUser"]);
+        }
+        return $arr[0]; 
     }
 }

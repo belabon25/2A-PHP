@@ -8,7 +8,6 @@
 <?php
 session_start();
 require("config/utils.php");
-require("controleur/controller.php");
 
-new Controller();
+new FrontController();
 ?>

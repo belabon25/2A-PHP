@@ -27,14 +27,18 @@ abstract class ControllerAbstract
             $i=1;
             $tabTask=array();
             $name=$_POST["fname"];
-            $visibility=$_POST["fvisibility"]=="public"?1:0;
+            $visibility=$_POST["fvisibility"]=="public"?0:1;
             while(isset($_POST["ft".$i]) and !empty($_POST["ft".$i])){
                 $tabTask[]=$_POST[("ft".$i)];
                 $i+=1;
             }
             Validation::validateFormNewList($name,$tabTask);
             $todoListModel=new todolistModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
-            $todoListModel->addList($name,$visibility,$tabTask);
+            $id=NULL;
+            if (isset($_SESSION['id'])){
+                $id=Validation::validateInt($_SESSION['id']);
+            }
+            $todoListModel->addList($name,$visibility,$tabTask,$id);
         }
     }
 
@@ -46,7 +50,7 @@ abstract class ControllerAbstract
             $passwd=$_POST["fpasswd"];
             Validation::validateUser($name,$passwd);
             $userModel=new userModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
-
+            $userModel->connection($name,$passwd);
         }
     }
 

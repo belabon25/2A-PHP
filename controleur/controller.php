@@ -112,6 +112,10 @@ class Controller
                 case ("connected"):
                     $this->createPrivatePage();
                     break;
+                case ("deconnexion"):
+                    userModel::deconnexion();
+                    header("Location: index.php");
+                    break;
                 case ("addList"):
                     require($GLOBALS["vues"]['vueEnTete']);
                     require($GLOBALS["vues"]['vueAddList']);
@@ -122,7 +126,6 @@ class Controller
                     break;
                 case("verifConnexion"):
                     $this->validateConnexion();
-                    var_dump($_SESSION);
                     header("Location: index.php");
                     break;
                 case("checkTache"):

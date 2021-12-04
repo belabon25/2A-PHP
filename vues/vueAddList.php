@@ -54,12 +54,16 @@
                         <div class="form-group col-auto">
                             <fieldset>
                                 <legend>Visibilité de la liste:</legend>
+                                <?php
+                                if (isset($_SESSION['id'])) {
+                                    echo "<div>
+                                    <input type=\"radio\" id=\"fprivate\" name=\"fvisibility\" value=\"private\">
+                                    <label for=\"fprivate\">Privé</label>
+                                    </div>";
+                                }                                
+                                ?>
                                 <div>
-                                    <input type="radio" id="fprivate" name="fvisibility" value="private" checked>
-                                    <label for="fprivate">Privé</label>
-                                </div>
-                                <div>
-                                    <input type="radio" id="fpublic" name="fvisibility" value="public">
+                                    <input type="radio" id="fpublic" name="fvisibility" value="public"  checked>
                                     <label for="fpublic">Publique</label>
                                 </div>
                             </fieldset>

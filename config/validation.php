@@ -26,4 +26,8 @@ class Validation {
         $username=filter_var($username,FILTER_SANITIZE_STRING);
         $password=filter_var($password,FILTER_SANITIZE_STRING);
     }
+
+    static function validateInt(int $number){
+        return filter_var($number,FILTER_SANITIZE_NUMBER_INT);
+    }
 }

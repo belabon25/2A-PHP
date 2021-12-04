@@ -15,6 +15,9 @@ class Task{
     public function getisDone():?string{
         return $this->isDone;
     }
+    public function getId():?string{
+        return $this->id;
+    }
     public function __toString():string
     {
 

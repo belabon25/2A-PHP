@@ -19,17 +19,20 @@
                         Ajouter une liste
                     </button>
                 </a>
-            </div>
-            <?php
-            if (isset($_SESSION['id'])) {
-                echo "<div class=\"align-left\">
-                <a href=\"index.php?action=deconnexion\">
+                <a href="index.php">
                     <button>
-                    deconnexion
+                        Acceuil
                     </button>
                 </a>
-            </div>";
-            }
-            ?>
+                <?php
+                if (isset($_SESSION['id'])) {
+                    echo "<a href=\"index.php?action=deconnexion\">
+                    <button>
+                        Deconnexion
+                    </button>
+                    </a>";
+                }
+                ?>
+            </div>
         </div>
     </div>

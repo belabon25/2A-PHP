@@ -15,6 +15,9 @@ class todoList{
         $tm=new taskModel($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
         $this->tasks=$tm->getTasks($this->idList);
     }
+    public function getTasks():array{
+        return $this->tasks;
+    }
     public function __toString():string
     {
         $tm=new todoListModel($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);

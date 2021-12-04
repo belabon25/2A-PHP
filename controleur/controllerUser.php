@@ -18,7 +18,7 @@ class ControllerUser extends ControllerAbstract
     //Le constructeur regarde quel paramètre est donné pour ensuite choisir quelle page affichée
     public function __construct(string $action)
     {
-        if (empty($action)) {
+        if (!empty($action)) {
             switch ($action) {
                 case ("connexion"):
                     require($GLOBALS["vues"]['vueEnTete']);
