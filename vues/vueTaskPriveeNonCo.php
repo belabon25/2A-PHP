@@ -7,6 +7,9 @@ echo "<div class=\"jumbotron text-center\">
             <a href=\"index.php?action=connexion\">
                 <button>Connexion</button>
             </a>
+                <a href=\"index.php?action=inscription\">
+                <button>Inscription</button>
+            </a>
         </div>
     </div>
 </body>

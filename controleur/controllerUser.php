@@ -62,6 +62,13 @@ class ControllerUser
         }
     }
 
+    public function addUser()
+    {
+        if (isset($_POST)) {
+            # code...
+        }
+    }
+
     //Fonction utilisée pour une création de page
     public function createPage()
     {
@@ -94,6 +101,13 @@ class ControllerUser
                 case ("connexion"):
                     require($GLOBALS["vues"]['vueEnTete']);
                     require($GLOBALS["vues"]['vueConnexion']);
+                    break;
+                case ("inscription"):
+                    require($GLOBALS["vues"]['vueEnTete']);
+                    require($GLOBALS["vues"]['vueInscription']);
+                    break;
+                case ("addUser"):
+                    $this->addUser();
                     break;
                 case ("addList"):
                     require($GLOBALS["vues"]['vueEnTete']);
