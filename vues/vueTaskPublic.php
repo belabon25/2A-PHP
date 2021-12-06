@@ -13,16 +13,16 @@ echo "<div class=\"jumbotron text-center\">
                 $taches = $todo->getTasks();
                 foreach($taches as $t){
                     echo "<p>".$t->getName();
-                    echo "<form action=\"index.php?action=verifTache\" method=\"POST\">";
+                    echo "<form action=\"index.php?action=verifTache\" method=\"POST\"><input type=\"hidden\" value=\"$pageAffichage\" name=page>";
                     if($t->getisDone())
                     {
-                        echo "<input type=\"submit\" value=\"".$t->getId().";0\" class=\"btn-check\" name=\"idTache\" id=\"".$t->getId()."\" autocomplete=\"off\"><label class=\"btn btn-outline-success\" for=\"".$t->getId()."\">&nbspTache réalisée&nbsp&nbsp";
+                        echo "<input type=\"submit\" value=\"".$t->getId().";0\" class=\"btn-check\" name=\"idTache\" id=\"".$t->getId()."\" autocomplete=\"off\">";
                     }
                     else
                     {
-                        echo "<input type=\"submit\" value=\"".$t->getId().";1\" class=\"btn-check\" name=\"idTache\" id=\"".$t->getId()."\" autocomplete=\"off\"><label class=\"btn btn-outline-primary\" for=\"".$t->getId()."\">&nbspTache à faire&nbsp&nbsp";
+                        echo "<input type=\"submit\" value=\"".$t->getId().";1\" class=\"btn-check\" name=\"idTache\" id=\"".$t->getId()."\" autocomplete=\"off\">";
                     }
-                    echo "</label></form></p>";
+                    echo "<label class=\"btn btn-outline-success\" for=\"".$t->getId()."\">&nbspTache réalisée&nbsp&nbsp</label></form></p>";
                 }
             }
             echo "</div></div>
