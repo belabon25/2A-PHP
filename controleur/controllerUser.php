@@ -64,8 +64,17 @@ class ControllerUser
 
     public function addUser()
     {
-        if (isset($_POST)) {
-            # code...
+        if (isset($_POST["fname"]) && isset($_POST["fpasswd"])) {
+            $name = $_POST["fname"];
+            $passwd = $_POST["fpasswd"];
+            Validation::validateUser($name, $passwd);
+            $tUser=new userModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
+            try {
+                $tUser->addUser($name,$passwd);
+                $this->validateConnexion();
+            } catch (Exception $e) {
+                echo "nom d'utilisateur deja pris";
+            }
         }
     }
 
@@ -108,6 +117,7 @@ class ControllerUser
                     break;
                 case ("addUser"):
                     $this->addUser();
+                    header("Location: index.php");
                     break;
                 case ("addList"):
                     require($GLOBALS["vues"]['vueEnTete']);
