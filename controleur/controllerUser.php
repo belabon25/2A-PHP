@@ -109,7 +109,7 @@ class ControllerUser
                     break;
                 case ("verifTache"):
                     $this->updateTache();
-                    $s = "Location: index.php?page=" . $_GET['page'];
+                    $s = "Location: index.php?page=".$_POST['page'];
                     header($s);
                     break;
                 default:
