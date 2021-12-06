@@ -25,8 +25,8 @@ class gatewayTask{
 
     //modifie la valeur done de la tache d'id 'id' a la valeur 'value'
     public function updateDone(int $id,bool $value):void{
-        $query="UPDATE task SET isDone=:value WHERE task.id = :id";
-        $this->con->executeQuery($query,array(':id'=>array($id,PDO::PARAM_INT),':value'=>array($value,PDO::PARAM_BOOL)));
+        $query="UPDATE task SET isDone=:v WHERE id = :id";
+        $this->con->executeQuery($query,array(':id'=>array($id,PDO::PARAM_INT),':v'=>array($value,PDO::PARAM_BOOL)));
     }
 
 
