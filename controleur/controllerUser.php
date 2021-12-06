@@ -70,7 +70,6 @@ class ControllerUser
         $nbPage = ceil($nbListesTotal / $this->nbListesParPage);
         $page = $this->setPage($nbListesTotal, $this->nbListesParPage);
         $pageAffichage = $page + 1; //sert pour l'affichage
-        $_SESSION['pageT'] = $pageAffichage;
         $res = $todoListModel->getPublicLists($page, $this->nbListesParPage);
         require($GLOBALS["vues"]['vueEnTete']);
         require($GLOBALS["vues"]['vueTaskPublic']);
@@ -110,7 +109,7 @@ class ControllerUser
                     break;
                 case ("verifTache"):
                     $this->updateTache();
-                    $s = "Location: index.php?page=" . $_GET['page'];
+                    $s = "Location: index.php?page=".$_POST['page'];
                     header($s);
                     break;
                 default:
