@@ -10,7 +10,7 @@ class todoList{
         $this->idList=$idList;
         $this->name=$name;
         $this->isPrivate=$isPrivate;
-        $this->isDone=$isDone;
+        $this->isDone=$this->setIsDone();
         $this->idUser=$idUser;
         $tm=new taskModel($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
         $this->tasks=$tm->getTasks($this->idList);
@@ -18,19 +18,32 @@ class todoList{
     public function getTasks():array{
         return $this->tasks;
     }
+    public function getName():string{
+        return $this->name;
+    }
+    public function isPrivate():bool{
+        return $this->isPrivate;
+    }
+    public function setIsDone():bool{
+        $tdm = new todolistModel($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
+        return $tdm->allTaskDone($this->idList);
+    }    
+    public function getIsDone():bool{
+        return $this->isDone;
+    }
+    public function getIdUser():int{
+        return $this->idUser;
+    }
+    public function getIdList():int{
+        return $this->idList;
+    }
     public function __toString():string
     {
-        $tm=new todoListModel($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
-        $couleur = $tm->allTaskDone($this->idList)?"success":"primary";
-        $s = "<div class=\"col alert alert-$couleur\">";
-        $s = $s."  <h3>$this->name. <button type=\"button\" class=\"btn btn-danger\">Supprimer Liste</button></h3>
-                <p>$this->isPrivate</p>
-                <p>$this->isDone</p>
-                <p>$this->idUser</p>";
+        $s = $this->name." ".$this->isPrivate." " .$this->isDone." ".$this->idUser." ";
             foreach($this->tasks as $task)
             {
                 $s = $s.$task;
             }
-        return $s."</div>";
+        return $s;
     }
 }

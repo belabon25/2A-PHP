@@ -36,7 +36,7 @@ class ControllerUser extends ControllerAbstract
                     $this->validateConnexion();
                     header("Location: index.php");
                     break;
-                case("checkTache"):
+                case("verifTache"):
                     $this->updateTache();
                     $s="Location: index.php?page=".$_GET['page'];
                     header($s);

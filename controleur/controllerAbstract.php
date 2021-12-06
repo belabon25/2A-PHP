@@ -7,7 +7,7 @@ abstract class ControllerAbstract
     //Vérifie si la page donnée est valide
     public function setPage(int $nbListes) : int
     {
-        if (isset($_GET["page"])) {
+        if (isset($_GET["page"]) && !empty($_GET["page"])) {
             $numPage = $_GET["page"];
             $numPage=Validation::validatePageNb($numPage, $nbListes, $this->nbListesParPage);
         } else {
@@ -58,9 +58,11 @@ abstract class ControllerAbstract
     public function updateTache()
     {
         if(isset($_POST["idTache"])){
-            $idTache=$_POST["idTache"];
+            $requete = explode(";",$_POST["idTache"]);
+            $idTache = $requete[0];
+            //$idTache = Validation::validateInt((int)($requete[0]));
             $tModel=new taskModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
-            $tModel->updateDone($idTache,$_POST[$idTache]=='0'?boolval(0):boolval(1));
+            $tModel->updateDone($idTache,$requete[1]=='0'?boolval(0):boolval(1));
         }
     }
 }

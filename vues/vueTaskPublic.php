@@ -7,7 +7,22 @@ echo "<div class=\"jumbotron text-center\">
             echo "<div class=\"container\">
             <div class=\"row\">";
             foreach ($res as $todo) {
-                echo $todo;
+                $couleur = $todo->getIsDone()?"success":"primary";
+                echo "<div class=\"col alert alert-$couleur\">";
+                echo "<h2>".$todo->getName()."</h2>";
+                $taches = $todo->getTasks();
+                foreach($taches as $t){
+                    echo "<p>".$t->getName();
+                        echo "<form action=\"index.php?action=verifTache\" method=\"POST\">";
+                        if(!$t->getisDone())
+                        {
+                            echo "<input type=\"submit\" value=\"".$t->getId().";0\" class=\"btn-check\" name=\"idTache\" id=\"".$t->getId()."\" autocomplete=\"off\"><label class=\"btn btn-outline-primary\" for=\"".$t->getId()."\">&nbspTache à faire&nbsp&nbsp</label></form></p>";
+                        }
+                        else
+                        {
+                            echo "<input type=\"submit\" value=\"".$t->getId().";1\" class=\"btn-check\" name=\"idTache\" id=\"".$t->getId()."\" autocomplete=\"off\"><label class=\"btn btn-outline-primary\" for=\"".$t->getId()."\">&nbspTache à faire&nbsp&nbsp</label></form></p>";
+                        }
+                }
             }
             echo "</div></div>
              <div>";
