@@ -15,7 +15,11 @@ class FrontController{
             }
         }
         else {
-            new ControllerUser("");
+            try{
+                new	ControllerUser("");
+            }catch(Exception $e){
+                require $vues['error'];
+            }
         }       
     }
 }
