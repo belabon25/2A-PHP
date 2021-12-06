@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Dec 06, 2021 at 09:29 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Hôte : 127.0.0.1
+-- Généré le : lun. 06 déc. 2021 à 21:38
+-- Version du serveur : 10.4.21-MariaDB
+-- Version de PHP : 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `dbyogourves`
+-- Base de données : `dbyogourves`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `task`
+-- Structure de la table `task`
 --
 
 CREATE TABLE `task` (
@@ -35,7 +35,7 @@ CREATE TABLE `task` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `task`
+-- Déchargement des données de la table `task`
 --
 
 INSERT INTO `task` (`id`, `name`, `idList`, `isDone`) VALUES
@@ -50,7 +50,7 @@ INSERT INTO `task` (`id`, `name`, `idList`, `isDone`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `todolist`
+-- Structure de la table `todolist`
 --
 
 CREATE TABLE `todolist` (
@@ -62,7 +62,7 @@ CREATE TABLE `todolist` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `todolist`
+-- Déchargement des données de la table `todolist`
 --
 
 INSERT INTO `todolist` (`id`, `name`, `isPrivate`, `isDone`, `idUser`) VALUES
@@ -73,7 +73,7 @@ INSERT INTO `todolist` (`id`, `name`, `isPrivate`, `isDone`, `idUser`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Structure de la table `user`
 --
 
 CREATE TABLE `user` (
@@ -83,72 +83,72 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user`
+-- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `name`, `hashPasswd`) VALUES
 (1, 'test', 'azerty'),
-(2, 'jean', 'claude'),
-(3, 'jean', 'claude');
+(2, 'jean', 'claude');
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `task`
+-- Index pour la table `task`
 --
 ALTER TABLE `task`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK_Task` (`idList`);
 
 --
--- Indexes for table `todolist`
+-- Index pour la table `todolist`
 --
 ALTER TABLE `todolist`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK_todo` (`idUser`);
 
 --
--- Indexes for table `user`
+-- Index pour la table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `task`
+-- AUTO_INCREMENT pour la table `task`
 --
 ALTER TABLE `task`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
--- AUTO_INCREMENT for table `todolist`
+-- AUTO_INCREMENT pour la table `todolist`
 --
 ALTER TABLE `todolist`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Constraints for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Constraints for table `task`
+-- Contraintes pour la table `task`
 --
 ALTER TABLE `task`
   ADD CONSTRAINT `FK_Task` FOREIGN KEY (`idList`) REFERENCES `todolist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `todolist`
+-- Contraintes pour la table `todolist`
 --
 ALTER TABLE `todolist`
   ADD CONSTRAINT `FK_todo` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`);
