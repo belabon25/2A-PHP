@@ -9,9 +9,9 @@ echo "<div class=\"jumbotron text-center\">
                 $couleur = $todo->getIsDone()?"success":"primary";
                 echo "<div class=\"col alert alert-$couleur\">";
                 echo "<h2>".$todo->getName();
-                echo "<form action=\"index.php?action=delList\" method=\"POST\">
-                <input type=\"submit\" value=\"".$todo->getIdList()."\" class=\"btn-check\" id=\"idList\"name=\"idList\">
-                <label class=\"btn btn-outline-danger\" for=\"idList\">Supprimer liste</label>
+                echo "<form action=\"index.php?action=delListPrivee\" method=\"POST\">
+                <input type=\"submit\" value=\"".$todo->getIdList()."\" class=\"btn-check\" id=\"idListPrivee\"name=\"idListPrivee\">
+                <label class=\"btn btn-outline-danger\" for=\"idListPrivee\">Supprimer liste</label>
                 </form>
                 </h2>";
                 $taches = $todo->getTasks();
