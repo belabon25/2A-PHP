@@ -6,9 +6,6 @@ $passwd="achanger";
 
 //requires
 require($dir.'controleur/connection.php');
-require($dir.'controleur/controllerUser.php');
-require($dir.'controleur/controllerConnected.php');
-require($dir.'controleur/frontController.php');
 require($dir.'DAL/gateway/gatewayTask.php');
 require($dir.'DAL/gateway/gatewayUser.php');
 require($dir.'DAL/gateway/gatewayTodolist.php');
@@ -19,6 +16,9 @@ require($dir.'DAL/todoList.php');
 require($dir.'DAL/task.php');
 require($dir.'DAL/user.php');
 require($dir.'config/validation.php');
+require($dir.'controleur/controllerUser.php');
+require($dir.'controleur/controllerConnected.php');
+require($dir.'controleur/frontController.php');
 
 //vues
 $vues['error']=$dir.'vues/erreur.php';

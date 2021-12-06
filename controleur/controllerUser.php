@@ -78,6 +78,18 @@ class ControllerUser
         }
     }
 
+
+    public function delList()
+    {
+        $tTodolist=todolistModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
+        $idList=Validation::validateInt($_POST["idList"]);
+        try {
+            $tTodolist->delList($idList);
+        } catch (Exception $e) {
+            require $vues["error"];
+        }
+    }
+
     //Fonction utilisée pour une création de page
     public function createPage()
     {
@@ -125,6 +137,10 @@ class ControllerUser
                     break;
                 case ("verifList"):
                     $this->validateAndAddList();
+                    header("Location: index.php");
+                    break;
+                case ("delList"):
+                    $this->delList();
                     header("Location: index.php");
                     break;
                 case ("verifConnexion"):
