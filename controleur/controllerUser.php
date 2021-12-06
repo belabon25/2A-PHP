@@ -81,12 +81,12 @@ class ControllerUser
 
     public function delList()
     {
-        $tTodolist=todolistModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
+        $tTodolist=new todolistModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
         $idList=Validation::validateInt($_POST["idList"]);
         try {
             $tTodolist->delList($idList);
         } catch (Exception $e) {
-            require $vues["error"];
+            require $GLOBALS["vues"]['error'];
         }
     }
 

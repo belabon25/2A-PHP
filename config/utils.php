@@ -21,7 +21,7 @@ require($dir.'controleur/controllerConnected.php');
 require($dir.'controleur/frontController.php');
 
 //vues
-$vues['error']=$dir.'vues/erreur.php';
+$vues['error']=$dir.'vues/error.php';
 $vues['vueTaskPublic']=$dir.'vues/vueTaskPublic.php';
 $vues['vueTaskPrivee']=$dir.'vues/vueTaskPrivee.php';
 $vues['vueConnexion']=$dir.'vues/vueConnexion.php';

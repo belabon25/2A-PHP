@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 28, 2021 at 11:09 AM
+-- Generation Time: Dec 06, 2021 at 08:49 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -30,21 +30,22 @@ SET time_zone = "+00:00";
 CREATE TABLE `task` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `idList` int(11) NOT NULL
+  `idList` int(11) NOT NULL,
+  `isDone` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `task`
 --
 
-INSERT INTO `task` (`id`, `name`, `idList`) VALUES
-(41, 'Polluer moins', 7),
-(42, 'Tuer moins d&#39;animaux', 7),
-(43, 'Faire un suicide collectif', 7),
-(44, 'Lessive', 8),
-(45, 'Repasser', 8),
-(46, 'Manger', 8),
-(47, 'Dormir', 8);
+INSERT INTO `task` (`id`, `name`, `idList`, `isDone`) VALUES
+(41, 'Polluer moins', 7, 0),
+(42, 'Tuer moins d&#39;animaux', 7, 0),
+(43, 'Faire un suicide collectif', 7, 0),
+(44, 'Lessive', 8, 0),
+(45, 'Repasser', 8, 0),
+(46, 'Manger', 8, 0),
+(47, 'Dormir', 8, 0);
 
 -- --------------------------------------------------------
 
@@ -57,7 +58,7 @@ CREATE TABLE `todolist` (
   `name` varchar(50) NOT NULL,
   `isPrivate` tinyint(1) NOT NULL DEFAULT 0,
   `isDone` tinyint(1) NOT NULL DEFAULT 0,
-  `idUser` int(11) DEFAULT NULL
+  `idUser` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -92,20 +93,6 @@ INSERT INTO `user` (`id`, `name`, `hashPasswd`) VALUES
 --
 
 --
--- Indexes for table `task`
---
-ALTER TABLE `task`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_Task` (`idList`);
-
---
--- Indexes for table `todolist`
---
-ALTER TABLE `todolist`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_todo` (`idUser`);
-
---
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -116,38 +103,10 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `task`
---
-ALTER TABLE `task`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
-
---
--- AUTO_INCREMENT for table `todolist`
---
-ALTER TABLE `todolist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `task`
---
-ALTER TABLE `task`
-  ADD CONSTRAINT `FK_Task` FOREIGN KEY (`idList`) REFERENCES `todolist` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `todolist`
---
-ALTER TABLE `todolist`
-  ADD CONSTRAINT `FK_todo` FOREIGN KEY (`idUser`) REFERENCES `user` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

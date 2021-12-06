@@ -47,6 +47,7 @@
 <div class="error-container">
     <h1>Oops!</h1>
     <h2>Something went wrong and we couldn't process your request.</h2>
+    <h6><?php echo $e; ?></h6>
     <p>Please go back to the previous page and try again.</p>
     <p>If the problem persists, please <a href="mailto:randomMail@things.com">contact us</a>.</p>
     <p class="back-to-home"><a href="../index.php">&laquo; Back to Homepage</a></p>

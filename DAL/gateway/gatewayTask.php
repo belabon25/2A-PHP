@@ -33,7 +33,7 @@ class gatewayTask{
     //delete task d'id 'taskId'
     public function delTask(int $taskId)
     {
-        $query="delete from todolist where id=:i";
+        $query="delete from task where id=:i";
         $this->con->executeQuery($query,array(":i"=>array($taskId,PDO::PARAM_INT)));
     }
 

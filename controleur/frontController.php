@@ -11,14 +11,14 @@ class FrontController{
                     new	ControllerUser($_GET['action']);
                 }
             }catch(Exception $e){
-                require $vues['error'];
+                require $GLOBALS["vues"]['error'];
             }
         }
         else {
             try{
                 new	ControllerUser("");
             }catch(Exception $e){
-                require $vues['error'];
+                require $GLOBALS["vues"]['error'];
             }
         }       
     }

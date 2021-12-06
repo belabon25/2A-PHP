@@ -17,6 +17,6 @@ class taskModel{
     }
     public function delTask(int $taskId)
     {
-        $this->gtToDoList->delTask($taskId);
+        $this->gtTask->delTask($taskId);
     }
 }

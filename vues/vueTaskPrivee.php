@@ -8,7 +8,12 @@ echo "<div class=\"jumbotron text-center\">
             foreach ($resP as $todo) {
                 $couleur = $todo->getIsDone()?"success":"primary";
                 echo "<div class=\"col alert alert-$couleur\">";
-                echo "<h2>".$todo->getName()."</h2>";
+                echo "<h2>".$todo->getName();
+                echo "<form action=\"index.php?action=delList\" method=\"POST\">
+                <input type=\"submit\" value=\"".$todo->getIdList()."\" class=\"btn-check\" id=\"idList\"name=\"idList\">
+                <label class=\"btn btn-outline-danger\" for=\"idList\">Supprimer liste</label>
+                </form>
+                </h2>";
                 $taches = $todo->getTasks();
                 foreach($taches as $t){
                     echo "<p>".$t->getName();

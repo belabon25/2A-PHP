@@ -28,8 +28,8 @@ class todolistModel{
     public function delList(int $listId)
     {
         $model=new taskModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
-        $l=$this->getList($listId);
-        foreach($l->getTasks() as $t) { 
+        $l=$model->getTasks($listId);
+        foreach($l as $t) { 
            $model->delTask($t->getId());
         }
         $this->gtToDoList->delList($listId);
