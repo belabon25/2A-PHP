@@ -14,16 +14,21 @@
                 <p>Projet PHP de GOURVES Yoann et LABONNE Benjamin</p>
             </div>
             <div class="align-left">
+                <table align="center">
+                    <tr><td>
                 <a href="index.php?action=addList">
                     <button>
                         Ajouter une liste
                     </button>
                 </a>
+                </td><td>
                 <a href="index.php">
                     <button>
                         Acceuil
                     </button>
                 </a>
+                </td></tr>
+                </table>
                 <?php
                 if (isset($_SESSION['id'])) {
                     echo "<a href=\"index.php?action=deconnexion\">
