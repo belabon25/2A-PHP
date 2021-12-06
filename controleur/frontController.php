@@ -1,10 +1,10 @@
 <?php
 class FrontController{
     public function __construct(){
-        $listeAction_Admin =array('deconnexion','connected');
+        $listeAction_Admin =array('deconnexion');
         if (isset($_GET['action'])) {
             try{
-                if(in_array($_GET['action'],$listeAction_Admin) || isset($_SESSION['id'])){	
+                if(in_array($_GET['action'],$listeAction_Admin)){	
                     new	ControllerConnected($_GET['action']);
                 }
                 else {
@@ -15,8 +15,7 @@ class FrontController{
             }
         }
         else {
-            isset($_SESSION['id'])?new ControllerConnected(""):new ControllerUser("");
-        }
-       
+            new ControllerUser("");
+        }       
     }
 }

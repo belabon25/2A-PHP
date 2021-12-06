@@ -6,7 +6,6 @@ $passwd="achanger";
 
 //requires
 require($dir.'controleur/connection.php');
-require($dir.'controleur/controllerAbstract.php');
 require($dir.'controleur/controllerUser.php');
 require($dir.'controleur/controllerConnected.php');
 require($dir.'controleur/frontController.php');
