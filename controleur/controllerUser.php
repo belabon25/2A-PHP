@@ -70,7 +70,6 @@ class ControllerUser
         $nbPage = ceil($nbListesTotal / $this->nbListesParPage);
         $page = $this->setPage($nbListesTotal, $this->nbListesParPage);
         $pageAffichage = $page + 1; //sert pour l'affichage
-        $_SESSION['pageT'] = $pageAffichage;
         $res = $todoListModel->getPublicLists($page, $this->nbListesParPage);
         require($GLOBALS["vues"]['vueEnTete']);
         require($GLOBALS["vues"]['vueTaskPublic']);
