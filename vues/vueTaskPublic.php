@@ -5,14 +5,14 @@ echo "<div class=\"jumbotron text-center\">
             <h2>Listes publiques :</h2>
             </div>";
             echo "<div class=\"container\">
-            <div class=\"row\">";
+            <div class=\"row\" >";
             foreach ($res as $todo) {
                 $couleur = $todo->getIsDone()?"success":"primary";
                 echo "<div class=\"col alert alert-$couleur\">";
                 echo "<h2>".$todo->getName();
                 echo "<form action=\"index.php?action=delListPublic\" method=\"POST\">
-                    <input type=\"submit\" value=\"".$todo->getIdList()."\" class=\"btn-check\" id=\"idListPublic\"name=\"idListPublic\">
-                    <label class=\"btn btn-outline-danger\" for=\"idListPublic\">Supprimer liste</label>
+                    <input type=\"submit\" value=\"".$todo->getIdList()."\" class=\"btn-check\" id=\"".$todo->getIdList()."\"name=\"idListPublic\">
+                    <label class=\"btn btn-outline-danger\" for=\"".$todo->getIdList()."\">Supprimer liste</label>
                     </form>
                     </h2>";
                 $taches = $todo->getTasks();
@@ -29,6 +29,7 @@ echo "<div class=\"jumbotron text-center\">
                     }
                     echo "</label></form></p>";
                 }
+                echo "</div>";
             }
             echo "</div></div>
              <div>";
