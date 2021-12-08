@@ -27,10 +27,12 @@ class Model{
 
     //list
     public function getPublicLists(int $page,int $nb):array{
-        return $this->gtToDoList->getPublicLists($page,$nb);
+        $premiere=$page*$nb;
+        return $this->gtToDoList->getPublicLists($premiere,$nb);
     }
     public function getPrivateLists(int $page,int $nb, int $userId):array{
-        return $this->gtToDoList->getPrivateLists($page,$nb,$userId);
+        $premiere=$page*$nb;
+        return $this->gtToDoList->getPrivateLists($premiere,$nb,$userId);
     }
     public function getNbPublicLists():int{
         return $this->gtToDoList->getNbPublicLists();

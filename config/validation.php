@@ -4,7 +4,7 @@ class Validation {
 
     //valide la valeur de page, page doit etre compris entre 1 et nbElement/element par page
     static function validatePageNb(int $page, int $nbElement, int $elemParPage):int{
-        if(filter_var($page,FILTER_VALIDATE_INT,array("options" => array("min_range"=>1, "max_range"=>($nbElement/$elemParPage)))) === false){
+        if(!filter_var($page,FILTER_VALIDATE_INT,array("options" => array("min_range"=>1, "max_range"=>($nbElement/$elemParPage)))) === false){
             return 1;  
         }
         else {
