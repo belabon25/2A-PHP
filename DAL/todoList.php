@@ -12,7 +12,7 @@ class todoList{
         $this->isPrivate=$isPrivate;
         $this->isDone=$this->setIsDone();
         $this->idUser=$idUser;
-        $tm=new taskModel($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
+        $tm=new Model($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
         $this->tasks=$tm->getTasks($this->idList);
     }
     public function getTasks():array{
@@ -25,7 +25,7 @@ class todoList{
         return $this->isPrivate;
     }
     public function setIsDone():bool{
-        $tdm = new todolistModel($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
+        $tdm = new Model($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
         return $tdm->allTaskDone($this->idList);
     }    
     public function getIsDone():bool{

@@ -12,8 +12,7 @@ class gatewayUser{
         $this->con->executeQuery($query,array(':n'=>array($userName,PDO::PARAM_STR),':h'=>array($passwdHash,PDO::PARAM_STR)));
         $res=$this->con->getResults()[0];
         if($res["id"]==NULL){
-            throw new ErrorException("Username or password invalid");
-            return NULL;
+            return new User(-1,"");
         }
         return new user($res["id"],$res["name"]);
     }

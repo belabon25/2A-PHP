@@ -2,7 +2,7 @@
 class ControllerUser
 {
     //La page web affichera ce nombre de lignes par pages
-    protected $nbListesParPage = 1;
+    protected $nbListesParPage = 4;
 
     //Vérifie si la page donnée est valide
     public function setPage(int $nbListes): int
@@ -29,7 +29,7 @@ class ControllerUser
                 $i += 1;
             }
             Validation::validateFormNewList($name, $tabTask);
-            $todoListModel = new todolistModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
+            $todoListModel = new Model($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
             $id = NULL;
             if (isset($_SESSION['id'])) {
                 $id = Validation::validateInt($_SESSION['id']);
@@ -39,15 +39,16 @@ class ControllerUser
     }
 
     //Teste, valide une connexion
-    public function validateConnexion()
+    public function validateConnexion():bool
     {
         if (isset($_POST["fname"]) && isset($_POST["fpasswd"])) {
             $name = $_POST["fname"];
             $passwd = $_POST["fpasswd"];
             Validation::validateUser($name, $passwd);
-            $userModel = new userModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
-            $userModel->connection($name, $passwd);
+            $userModel = new Model($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
+            return $userModel->connection($name, $passwd);
         }
+        return false;
     }
 
     //Met à jour le booléen isDone d'une tache
@@ -57,7 +58,7 @@ class ControllerUser
             $requete = explode(";", $_POST["idTache"]);
             $idTache = $requete[0];
             //$idTache = Validation::validateInt((int)($requete[0]));
-            $tModel = new taskModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
+            $tModel = new Model($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
             $tModel->updateDone($idTache, $requete[1] == '0' ? boolval(0) : boolval(1));
         }
     }
@@ -68,7 +69,7 @@ class ControllerUser
             $name = $_POST["fname"];
             $passwd = $_POST["fpasswd"];
             Validation::validateUser($name, $passwd);
-            $tUser=new userModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
+            $tUser=new Model($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
             try {
                 $tUser->addUser($name,$passwd);
                 $this->validateConnexion();
@@ -91,7 +92,7 @@ class ControllerUser
 
     public function delList(int $idList)
     {
-        $tTodolist=new todolistModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
+        $tTodolist=new Model($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
         try {
             $tTodolist->delList($idList);
         } catch (Exception $e) {
@@ -103,7 +104,7 @@ class ControllerUser
     //Fonction utilisée pour une création de page
     public function createPage()
     {
-        $todoListModel = new todolistModel($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
+        $todoListModel = new Model($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
         $nbListesTotal = $todoListModel->getNbPublicLists();
         $nbPage = ceil($nbListesTotal / $this->nbListesParPage);
         $page = $this->setPage($nbListesTotal, $this->nbListesParPage);
@@ -158,8 +159,12 @@ class ControllerUser
                     header("Location: index.php");
                     break;
                 case ("verifConnexion"):
-                    $this->validateConnexion();
-                    header("Location: index.php");
+                    if($this->validateConnexion()){
+                        header("Location: index.php");
+                    }
+                    else {
+                        echo "Nom d'utilisateur ou mot de passe invalide";
+                    }
                     break;
                 case ("verifTache"):
                     $this->updateTache();
