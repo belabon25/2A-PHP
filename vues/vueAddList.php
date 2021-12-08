@@ -57,15 +57,26 @@
                                 <?php
                                 if (isset($_SESSION['id'])) {
                                     echo "<div>
+                                    <input type=\"radio\" id=\"fprivate\" name=\"fvisibility\" value=\"private\"  checked>
+                                    <label for=\"fprivate\">Privé</label>
+                                    </div>";
+                                    echo "<div>
+                                    <input type=\"radio\" id=\"fpublic\" name=\"fvisibility\" value=\"public\">
+                                    <label for=\"fpublic\">Publique</label>
+                                    </div>";
+                                }
+                                else
+                                {
+                                    echo "<div>
                                     <input type=\"radio\" id=\"fprivate\" name=\"fvisibility\" value=\"private\">
                                     <label for=\"fprivate\">Privé</label>
                                     </div>";
-                                }                                
+                                    echo "<div>
+                                    <input type=\"radio\" id=\"fpublic\" name=\"fvisibility\" value=\"public\"  checked>
+                                    <label for=\"fpublic\">Publique</label>
+                                    </div>";                                    
+                                }                             
                                 ?>
-                                <div>
-                                    <input type="radio" id="fpublic" name="fvisibility" value="public"  checked>
-                                    <label for="fpublic">Publique</label>
-                                </div>
                             </fieldset>
                         </div>
                         <div class="form-group row-auto">
