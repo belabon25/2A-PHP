@@ -12,7 +12,7 @@
                         </div>
                         <div class="form-group row-auto">
                             <label for="fpasswd">Password</label>
-                            <input class="form-control" type="text" id="fpasswd" name="fpasswd"><br>
+                            <input class="form-control" type="password" id="fpasswd" name="fpasswd"><br>
                         </div>
                         <div class="form-group row-auto">
                             <input class="btn btn-primary" type="submit" value="S'inscrire">

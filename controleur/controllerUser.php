@@ -63,9 +63,9 @@ class ControllerUser
         }
     }
 
-    public function addUser()
+    public function addUser():bool
     {
-        if (isset($_POST["fname"]) && isset($_POST["fpasswd"])) {
+        if (isset($_POST["fname"]) && isset($_POST["fpasswd"])){
             $name = $_POST["fname"];
             $passwd = $_POST["fpasswd"];
             Validation::validateUser($name, $passwd);
@@ -73,8 +73,9 @@ class ControllerUser
             try {
                 $tUser->addUser($name,$passwd);
                 $this->validateConnexion();
+                return true;
             } catch (Exception $e) {
-                echo "nom d'utilisateur deja pris";
+                return false;
             }
         }
     }
@@ -139,8 +140,12 @@ class ControllerUser
                     require($GLOBALS["vues"]['vueInscription']);
                     break;
                 case ("addUser"):
-                    $this->addUser();
+                    if($this->addUser()){
                     header("Location: index.php");
+                    }
+                    else {
+                        echo "Nom d'utilisateur déjà pris";
+                    }
                     break;
                 case ("addList"):
                     require($GLOBALS["vues"]['vueEnTete']);
