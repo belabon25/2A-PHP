@@ -10,8 +10,8 @@ echo "<div class=\"jumbotron text-center\">
                 echo "<div class=\"col alert alert-$couleur\">";
                 echo "<h2>".$todo->getName();
                 echo "<form action=\"index.php?action=delListPrivee\" method=\"POST\">
-                <input type=\"submit\" value=\"".$todo->getIdList()."\" class=\"btn-check\" id=\"idListPrivee\"name=\"idListPrivee\">
-                <label class=\"btn btn-outline-danger\" for=\"idListPrivee\">Supprimer liste</label>
+                <input type=\"submit\" value=\"".$todo->getIdList()."\" class=\"btn-check\" id=\"".$todo->getIdList()."\"name=\"idListPrivee\">
+                <label class=\"btn btn-outline-danger\" for=\"".$todo->getIdList()."\">Supprimer liste</label>
                 </form>
                 </h2>";
                 $taches = $todo->getTasks();
@@ -28,8 +28,9 @@ echo "<div class=\"jumbotron text-center\">
                     }
                     echo "</label></form></p>";
                 }
+                echo "</div>";
             }
-            echo "</div></div>
+            echo "</div>
              <div>";
             $pagePrec=$pageAffichageP-1;
             $pageSuiv=$pageAffichageP+1;
