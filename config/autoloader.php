@@ -19,7 +19,7 @@ class Autoload
         $filename = $class . '.php';
         $dirs = array('modele/', './', 'config/', 'controleur/','DAL/','DAL/gateway/','vues/');
         foreach ($dirs as $d) {
-            $file = $dir . $d . $filename;
+            $file = $dir . $d . lcfirst($filename);
             if (file_exists($file)) {
                 include $file;
             }
