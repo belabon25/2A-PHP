@@ -6,8 +6,10 @@
 <meta charset="utf-8">
 </head>
 <?php
-session_start();
-require("config/utils.php");
+require('config/utils.php');
+//charge tout
+require('config/autoloader.php');
+Autoload::charger();
 
 new FrontController();
 ?>

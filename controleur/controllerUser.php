@@ -144,6 +144,8 @@ class ControllerUser
                     header("Location: index.php");
                     }
                     else {
+                        require($GLOBALS["vues"]['vueEnTete']);
+                        require($GLOBALS["vues"]['vueInscription']);
                         echo "Nom d'utilisateur déjà pris";
                     }
                     break;
@@ -168,6 +170,8 @@ class ControllerUser
                         header("Location: index.php");
                     }
                     else {
+                        require($GLOBALS["vues"]['vueEnTete']);
+                        require($GLOBALS["vues"]['vueConnexion']);
                         echo "Nom d'utilisateur ou mot de passe invalide";
                     }
                     break;

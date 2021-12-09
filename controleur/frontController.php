@@ -1,6 +1,7 @@
 <?php
 class FrontController{
     public function __construct(){
+        session_start();
         $listeAction_Admin =array('deconnexion');
         if (isset($_GET['action'])) {
             try{

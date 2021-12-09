@@ -7,14 +7,25 @@ class gatewayUser{
     }
 
     //retourne l'utilisateur correspondant au couple userName/passwdHash
-    public function getUser(string $userName, string $passwdHash):user{
-        $query="select * from user where name=:n and hashPasswd=:h";
-        $this->con->executeQuery($query,array(':n'=>array($userName,PDO::PARAM_STR),':h'=>array($passwdHash,PDO::PARAM_STR)));
+    public function getUser(string $userName):user{
+        $query="select * from user where name=:n";
+        $this->con->executeQuery($query,array(':n'=>array($userName,PDO::PARAM_STR)));
         $res=$this->con->getResults()[0];
         if($res["id"]==NULL){
             return new User(-1,"");
         }
         return new user($res["id"],$res["name"]);
+    }
+
+    //retourne le hash du password apparrtenant a l'utilisateur username
+    public function getHashedPasswd(string $userName):string{
+        $query="select hashPasswd from user where name=:n";
+        $this->con->executeQuery($query,array(':n'=>array($userName,PDO::PARAM_STR)));
+        $res=$this->con->getResults()[0];
+        if(sizeof($res)==0){
+            return "";
+        }
+        return $res[0];
     }
 
     //retourne l'utilisateur correspondant a l'id 'userid'

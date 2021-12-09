@@ -67,23 +67,30 @@ class Model{
     }
 
     //user
-    public function getUser(string $userName, string $passwdHash):user{
-        return $this->gtUser->getUser($userName,$passwdHash);
+    public function getUser(string $userName):user{
+        return $this->gtUser->getUser($userName);
+    }
+    public function getHashedPasswd(string $userName):string{
+        return $this->gtUser->getHashedPasswd($userName);
     }
     public function getUserFromid(int $userId):user{
         return $this->gtUser->getUserFromid($userId);
     }
     public function addUser(string $userName, string $passwd):void{
+        $passwd=password_hash($passwd,CRYPT_BLOWFISH);
         $this->gtUser->addUser($userName,$passwd);
     }
     public function connection(string $name, string $passwd):bool{
-        $user=$this->getUser($name,$passwd);
-        if ($user->getId()==-1) {
-            return false;
+        if(password_verify($passwd,$this->getHashedPasswd($name))){
+            $user=$this->getUser($name);
+            if ($user->getId()==-1) {
+                return false;
+            }
+            $_SESSION['id']=$user->getId();
+            $_SESSION['role']='connected';
+            return true;
         }
-        $_SESSION['id']=$user->getId();
-        $_SESSION['role']='connected';
-        return true;
+        return false;
     }
     public static function deconnexion():void{
         session_unset();
