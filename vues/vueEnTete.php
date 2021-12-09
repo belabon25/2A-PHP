@@ -30,7 +30,7 @@
                 </td></tr>
                 </table>
                 <?php
-                if (isset($_SESSION['id'])) {
+                if (ModelConnected::isConnected()!=null) {
                     echo "<a href=\"index.php?action=deconnexion\">
                     <button>
                         Deconnexion

@@ -31,10 +31,8 @@ class ControllerUser
             Validation::validateFormNewList($name, $tabTask);
             $todoListModel = new Model($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
             $id = NULL;
-            if (isset($_SESSION['id'])) {
-                $id = Validation::validateInt($_SESSION['id']);
-            }
-            $todoListModel->addList($name, $visibility, $tabTask, $id);
+            $user=ModelConnected::isConnected();
+            $todoListModel->addList($name, $visibility, $tabTask, $user->getId());
         }
     }
 
@@ -114,12 +112,13 @@ class ControllerUser
         require($GLOBALS["vues"]['vueEnTete']);
         require($GLOBALS["vues"]['vueTaskPublic']);
         
-        if (isset($_SESSION['id'])) {
-            $nbListesTotal = $todoListModel->getNbPrivateLists($_SESSION['id']);
+        $user=ModelConnected::isConnected();
+        if ($user!=null) {
+            $nbListesTotal = $todoListModel->getNbPrivateLists($user->getId());
             $nbPageP = ceil($nbListesTotal / $this->nbListesParPage);
             $pageP = $this->setPage($nbListesTotal, $this->nbListesParPage);
             $pageAffichageP = $pageP + 1;
-            $resP = $todoListModel->getPrivateLists($pageP, $this->nbListesParPage, $_SESSION['id']);
+            $resP = $todoListModel->getPrivateLists($pageP, $this->nbListesParPage, $user->getId());
             require($GLOBALS["vues"]['vueTaskPrivee']);
         }
         else {

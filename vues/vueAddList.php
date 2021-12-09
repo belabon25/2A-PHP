@@ -55,7 +55,7 @@
                             <fieldset>
                                 <legend>Visibilité de la liste:</legend>
                                 <?php
-                                if (isset($_SESSION['id'])) {
+                                if (ModelConnected::isConnected()!=null) {
                                     echo "<div>
                                     <input type=\"radio\" id=\"fprivate\" name=\"fvisibility\" value=\"private\"  checked>
                                     <label for=\"fprivate\">Privé</label>
@@ -68,7 +68,7 @@
                                 else
                                 {
                                     echo "<div>
-                                    <input type=\"radio\" id=\"fprivate\" name=\"fvisibility\" value=\"private\">
+                                    <input type=\"radio\" id=\"fprivate\" name=\"fvisibility\" value=\"private\" disabled>
                                     <label for=\"fprivate\">Privé</label>
                                     </div>";
                                     echo "<div>

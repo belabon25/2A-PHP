@@ -29,15 +29,15 @@ class gatewayUser{
     }
 
     //retourne l'utilisateur correspondant a l'id 'userid'
-    public function getUserFromid(int $userId):user{
+    public function getUserFromid(int $userId):?user{
         $query="select * from user where id=:id";
         $this->con->executeQuery($query,array(':id'=>array($userId,PDO::PARAM_INT)));
         $res=$this->con->getResults();
         if(sizeof($res)==0){
             throw new ErrorException("Id Invalide");
-            return NULL;
+            return null;
         }
-        return new user($res["id"],$res["name"]);
+        return new user($res[0]["id"],$res[0]["name"]);
     }
 
     //ajoute le user passé en parametre
