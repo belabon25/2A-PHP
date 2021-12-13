@@ -35,15 +35,15 @@ echo "<div class=\"jumbotron text-center\">
             $pagePrec=$pageAffichageP-1;
             $pageSuiv=$pageAffichageP+1;
             if ($pageAffichageP>1) {
-                echo "<a href=\"index.php?page=$pagePrec\">&lt    </a>
-                <a href=\"index.php?page=1\">1</a>";
+                echo "<a class=\"btn btn-primary\" href=\"index.php?pageP=$pagePrec\">&lt    </a>
+                <a class=\"btn btn-primary\" href=\"index.php?pageP=1\">1</a>";
             }                    
                     
             echo "<a>    $pageAffichageP    </a>";
                     
             if ($pageAffichageP<$nbPageP) {
-                echo "<a href=\"index.php?page=$nbPageP\">$nbPageP</a>
-                <a href=\"index.php?page=$pageSuiv\">    &gt</a>";
+                echo "<a class=\"btn btn-primary\" href=\"index.php?pageP=$nbPageP\">$nbPageP</a>
+                <a class=\"btn btn-primary\" href=\"index.php?pageP=$pageSuiv\">    &gt</a>";
             }
             echo "</div>
         </div>
