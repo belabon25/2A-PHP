@@ -5,10 +5,10 @@ class ControllerUser
     protected $nbListesParPage = 4;
 
     //Vérifie si la page donnée est valide
-    public function setPage(int $nbListes): int
+    public function setPage(string $keyToUse, int $nbListes): int
     {
-        if (isset($_GET["page"]) && !empty($_GET["page"])) {
-            $numPage = $_GET["page"];
+        if (isset($_GET[$keyToUse]) && !empty($_GET[$keyToUse])) {
+            $numPage = $_GET[$keyToUse];
             $numPage = Validation::validatePageNb($numPage, $nbListes, $this->nbListesParPage);
         } else {
             $numPage = 1;
@@ -106,7 +106,7 @@ class ControllerUser
         $todoListModel = new Model($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
         $nbListesTotal = $todoListModel->getNbPublicLists();
         $nbPage = ceil($nbListesTotal / $this->nbListesParPage);
-        $page = $this->setPage($nbListesTotal, $this->nbListesParPage);
+        $page = $this->setPage("page", $nbListesTotal);
         $pageAffichage = $page + 1; //sert pour l'affichage
         $res = $todoListModel->getPublicLists($page, $this->nbListesParPage);
         require($GLOBALS["vues"]['vueEnTete']);
@@ -116,7 +116,7 @@ class ControllerUser
         if ($user!=null) {
             $nbListesTotal = $todoListModel->getNbPrivateLists($user->getId());
             $nbPageP = ceil($nbListesTotal / $this->nbListesParPage);
-            $pageP = $this->setPage($nbListesTotal, $this->nbListesParPage);
+            $pageP = $this->setPage("pageP",$nbListesTotal);
             $pageAffichageP = $pageP + 1;
             $resP = $todoListModel->getPrivateLists($pageP, $this->nbListesParPage, $user->getId());
             require($GLOBALS["vues"]['vueTaskPrivee']);
@@ -176,7 +176,7 @@ class ControllerUser
                     break;
                 case ("verifTache"):
                     $this->updateTache();
-                    $s = "Location: index.php?page=".$_POST['page'];
+                    $s = "Location: index.php?page=".$_POST['page']."&pageP=".$_POST['pageP'];;
                     header($s);
                     break;
                 default:
