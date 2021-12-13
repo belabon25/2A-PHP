@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : lun. 06 déc. 2021 à 21:38
--- Version du serveur : 10.4.21-MariaDB
--- Version de PHP : 8.0.12
+-- Hôte : localhost
+-- Généré le : lun. 13 déc. 2021 à 14:09
+-- Version du serveur : 10.4.22-MariaDB
+-- Version de PHP : 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,13 +39,37 @@ CREATE TABLE `task` (
 --
 
 INSERT INTO `task` (`id`, `name`, `idList`, `isDone`) VALUES
-(44, 'Lessive', 8, 1),
-(45, 'Repasser', 8, 1),
-(46, 'Manger', 8, 1),
-(47, 'Dormir', 8, 1),
-(81, 'Je suis privée bonjour', 22, 0),
-(82, 'Polluer moins', 23, 0),
-(83, 'Tuer moins d&#39;animaux', 23, 0);
+(1, 'Manger', 1, 0),
+(2, 'Faire la lessive', 1, 0),
+(3, 'Boire', 1, 0),
+(4, 'Dormir', 1, 0),
+(5, 'Être social', 2, 1),
+(6, 'Boire de l&#39;alcool', 2, 1),
+(7, 'Nous', 3, 0),
+(8, 'Sommes', 3, 0),
+(9, 'En', 3, 0),
+(10, 'Manque', 3, 0),
+(11, 'D&#39;idées', 3, 0),
+(12, 'Bonjour', 4, 0),
+(13, 'Vous', 4, 0),
+(14, 'Allez', 4, 0),
+(15, 'Bien ?', 4, 0),
+(16, 'Sert à afficher la 2e page', 5, 0),
+(17, 'Bonjour je suis privée', 6, 0),
+(18, 'Anglais', 7, 0),
+(19, 'PHP', 7, 0),
+(20, 'Modélisations mathématiques', 7, 0),
+(21, 'Expression', 7, 0),
+(22, 'PPP', 7, 0),
+(23, 'Conception', 7, 0),
+(24, 'Gestion SI', 7, 0),
+(25, 'ProgSYS', 7, 0),
+(26, 'Projet Tuteuré', 7, 1),
+(27, 'Projet Java', 7, 0),
+(28, 'Faire un second utilisateur marche youpi', 8, 1),
+(29, 'Dire bonjour', 9, 0),
+(30, 'Je m&#39;en vais', 10, 0),
+(31, 'Et oui jamy ', 11, 1);
 
 -- --------------------------------------------------------
 
@@ -66,9 +90,17 @@ CREATE TABLE `todolist` (
 --
 
 INSERT INTO `todolist` (`id`, `name`, `isPrivate`, `isDone`, `idUser`) VALUES
-(8, 'Ce que tout le monde doit faire', 0, 0, NULL),
-(22, 'Tache privée !', 1, 0, 1),
-(23, 'Pour sauver la planète', 0, 0, 1);
+(1, 'Liste publique 1', 0, 0, 1),
+(2, 'Liste publique 2', 0, 0, 1),
+(3, 'Liste publique 3', 0, 0, 1),
+(4, 'Liste publique 4', 0, 0, 1),
+(5, 'Liste publique 5', 0, 0, 1),
+(6, 'Liste privée Testeur', 1, 0, 1),
+(7, 'Examens', 1, 0, 1),
+(8, 'Tâche privée Testeur2', 1, 0, 2),
+(9, 'Bonjour', 1, 0, 1),
+(10, 'Au revoir', 1, 0, 1),
+(11, '2e Page !', 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -87,8 +119,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `hashPasswd`) VALUES
-(1, 'test', 'azerty'),
-(2, 'jean', 'claude');
+(1, 'Testeur', '$2y$10$sKJYSV/vvVKwZjcMLnaZk.vy9JenRy0dyv/RvxAebwvTE/RlzPPJ.'),
+(2, 'Testeur2', '$2y$10$2Ebm9r3ANLt9xI.27EN43eVn15XdQlYDZNrt0oUPucY2u7vTe5uxe');
 
 --
 -- Index pour les tables déchargées
@@ -123,19 +155,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `task`
 --
 ALTER TABLE `task`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT pour la table `todolist`
 --
 ALTER TABLE `todolist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées

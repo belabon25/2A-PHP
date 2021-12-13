@@ -13,3 +13,8 @@ $vues['vueInscription']=$dir.'vues/vueInscription.php';
 $vues['vueEnTete']=$dir.'vues/vueEnTete.php';
 $vues['vueTaskPriveeNonCo']=$dir.'vues/vueTaskPriveeNonCo.php';
 $vues['vueAddList']=$dir.'vues/vueAddList.php';
+
+//Utilisateurs de test :
+
+//Pseudo : Testeur
+//Mot de passe : 0000
