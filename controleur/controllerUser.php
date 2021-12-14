@@ -30,9 +30,8 @@ class ControllerUser
             }
             Validation::validateFormNewList($name, $tabTask);
             $todoListModel = new Model($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
-            $id = NULL;
             $user=ModelConnected::isConnected();
-            $todoListModel->addList($name, $visibility, $tabTask, $user->getId());
+            $todoListModel->addList($name, $visibility, $tabTask, $user->getName());
         }
     }
 
@@ -43,7 +42,7 @@ class ControllerUser
             $name = $_POST["fname"];
             $passwd = $_POST["fpasswd"];
             Validation::validateUser($name, $passwd);
-            $userModel = new Model($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
+            $userModel = new ModelConnected($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
             return $userModel->connection($name, $passwd);
         }
         return false;
@@ -54,8 +53,7 @@ class ControllerUser
     {
         if (isset($_POST["idTache"])) {
             $requete = explode(";", $_POST["idTache"]);
-            $idTache = $requete[0];
-            //$idTache = Validation::validateInt((int)($requete[0]));
+            $idTache = Validation::validateInt((int)($requete[0]));
             $tModel = new Model($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
             $tModel->updateDone($idTache, $requete[1] == '0' ? boolval(0) : boolval(1));
         }
@@ -114,11 +112,11 @@ class ControllerUser
         
         $user=ModelConnected::isConnected();
         if ($user!=null) {
-            $nbListesTotal = $todoListModel->getNbPrivateLists($user->getId());
+            $nbListesTotal = $todoListModel->getNbPrivateLists($user->getName());
             $nbPageP = ceil($nbListesTotal / $this->nbListesParPage);
             $pageP = $this->setPage("pageP",$nbListesTotal);
             $pageAffichageP = $pageP + 1;
-            $resP = $todoListModel->getPrivateLists($pageP, $this->nbListesParPage, $user->getId());
+            $resP = $todoListModel->getPrivateLists($pageP, $this->nbListesParPage, $user->getName());
             require($GLOBALS["vues"]['vueTaskPrivee']);
         }
         else {

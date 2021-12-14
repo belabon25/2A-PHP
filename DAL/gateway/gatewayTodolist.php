@@ -12,19 +12,19 @@ class gatewayTodolist{
         $this->con->executeQuery($query,array(":premiere"=>array($premiere,PDO::PARAM_INT),":nb"=>array($nb,PDO::PARAM_INT)));
         $res=$this->con->getResults();
         foreach($res as $list){
-            $arr[]=new todoList($list["id"],$list["name"],$list["isPrivate"],$list["isDone"],$list["idUser"]);
+            $arr[]=new todoList($list["id"],$list["name"],$list["isPrivate"],$list["isDone"],$list["userName"]);
         }
         return $arr;
     }
 
     //retourne la liste des todoList de l'utilisateur id
-    public function getPrivateLists(int $premiere,int $nb, int $userId):array{
+    public function getPrivateLists(int $premiere,int $nb, string $userName):array{
         $arr=[];
-        $query="select * from todolist where isPrivate=1 and idUser=:id order by id limit :premiere, :nb";
-        $this->con->executeQuery($query,array(":id"=>array($userId,PDO::PARAM_INT),":premiere"=>array($premiere,PDO::PARAM_INT),":nb"=>array($nb,PDO::PARAM_INT)));
+        $query="select * from todolist where isPrivate=1 and userName=:id order by id limit :premiere, :nb";
+        $this->con->executeQuery($query,array(":id"=>array($userName,PDO::PARAM_STR),":premiere"=>array($premiere,PDO::PARAM_INT),":nb"=>array($nb,PDO::PARAM_INT)));
         $res=$this->con->getResults();
         foreach($res as $list){
-            $arr[]=new todoList($list["id"],$list["name"],$list["isPrivate"],$list["isDone"],$list["idUser"]);
+            $arr[]=new todoList($list["id"],$list["name"],$list["isPrivate"],$list["isDone"],$list["userName"]);
         }
         return $arr; 
     }
@@ -39,19 +39,19 @@ class gatewayTodolist{
     }
 
     //retourne le nombre de liste privée de l'utilisateur id
-    public function getNbPrivateLists(int $userId):int{
+    public function getNbPrivateLists(string $userName):int{
         $res=0;
-        $query="select count(*) from todolist where isPrivate=1 and idUser=:id";
-        $this->con->executeQuery($query,array(":id"=>array($userId,PDO::PARAM_INT)));
+        $query="select count(*) from todolist where isPrivate=1 and userName=:id";
+        $this->con->executeQuery($query,array(":id"=>array($userName,PDO::PARAM_STR)));
         $res=$this->con->getResults();
         return $res[0][0];
     }
 
     //ajoute une liste a BDD
-    public function addList(string $name, bool $isPrivate, int $idUser=NULL):int
+    public function addList(string $name, bool $isPrivate, string $userName=NULL):int
     {
-        $query="insert into todolist(name,isPrivate,isDone,idUser) values (:n,:p,:d,:id)";
-        $this->con->executeQuery($query,array(":n"=>array($name,PDO::PARAM_STR),':p'=>array($isPrivate,PDO::PARAM_BOOL),':d'=>array(0,PDO::PARAM_BOOL),':id'=>array($idUser,PDO::PARAM_INT)));
+        $query="insert into todolist(name,isPrivate,isDone,userName) values (:n,:p,:d,:id)";
+        $this->con->executeQuery($query,array(":n"=>array($name,PDO::PARAM_STR),':p'=>array($isPrivate,PDO::PARAM_BOOL),':d'=>array(0,PDO::PARAM_BOOL),':id'=>array($userName,PDO::PARAM_STR)));
         $query="select max(id) from todolist";
         $this->con->executeQuery($query);
         $res=$this->con->getResults();
@@ -80,7 +80,7 @@ class gatewayTodolist{
         $this->con->executeQuery($query,array(":id"=>array($idList,PDO::PARAM_INT)));
         $res=$this->con->getResults();
         foreach($res as $list){
-            $arr[]=new todoList($list["id"],$list["name"],$list["isPrivate"],$list["isDone"],$list["idUser"]);
+            $arr[]=new todoList($list["id"],$list["name"],$list["isPrivate"],$list["isDone"],$list["userName"]);
         }
         return $arr[0]; 
     }

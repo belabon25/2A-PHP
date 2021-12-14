@@ -11,10 +11,10 @@ class gatewayUser{
         $query="select * from user where name=:n";
         $this->con->executeQuery($query,array(':n'=>array($userName,PDO::PARAM_STR)));
         $res=$this->con->getResults()[0];
-        if($res["id"]==NULL){
-            return new User(-1,"");
+        if($res["name"]==NULL){
+            return new User("","");
         }
-        return new user($res["id"],$res["name"]);
+        return new user($res["name"],"connected");
     }
 
     //retourne le hash du password apparrtenant a l'utilisateur username
@@ -28,21 +28,9 @@ class gatewayUser{
         return $res[0];
     }
 
-    //retourne l'utilisateur correspondant a l'id 'userid'
-    public function getUserFromid(int $userId):?user{
-        $query="select * from user where id=:id";
-        $this->con->executeQuery($query,array(':id'=>array($userId,PDO::PARAM_INT)));
-        $res=$this->con->getResults();
-        if(sizeof($res)==0){
-            throw new ErrorException("Id Invalide");
-            return null;
-        }
-        return new user($res[0]["id"],$res[0]["name"]);
-    }
-
     //ajoute le user passé en parametre
     public function addUser(string $userName, string $passwd):void{
-        $query="insert into user values(NULL, :n,:p)";
+        $query="insert into user values(:n,:p)";
         $this->con->executeQuery($query,array(':n'=>array($userName,PDO::PARAM_STR),':p'=>array($passwd,PDO::PARAM_STR)));
     }
 }

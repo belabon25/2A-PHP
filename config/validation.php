@@ -30,4 +30,8 @@ class Validation {
     static function validateInt(int $number){
         return filter_var($number,FILTER_SANITIZE_NUMBER_INT);
     }
+
+    static function validateStr(string $str){
+        return filter_var($str,FILTER_SANITIZE_STRING);
+    }
 }

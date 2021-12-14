@@ -4,14 +4,14 @@ class todoList{
     private $name;
     private $isPrivate;
     private $isDone;
-    private $idUser;
+    private $userName;
     private $idList;
-    public function __construct(int $idList,string $name, bool $isPrivate, bool $isDone, ?int $idUser){
+    public function __construct(int $idList,string $name, bool $isPrivate, bool $isDone, ?string $userName){
         $this->idList=$idList;
         $this->name=$name;
         $this->isPrivate=$isPrivate;
         $this->isDone=$this->setIsDone();
-        $this->idUser=$idUser;
+        $this->userName=$userName;
         $tm=new Model($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
         $this->tasks=$tm->getTasks($this->idList);
     }
@@ -31,15 +31,15 @@ class todoList{
     public function getIsDone():bool{
         return $this->isDone;
     }
-    public function getIdUser():int{
-        return $this->idUser;
+    public function getUserName():int{
+        return $this->userName;
     }
     public function getIdList():int{
         return $this->idList;
     }
     public function __toString():string
     {
-        $s = $this->name." ".$this->isPrivate." " .$this->isDone." ".$this->idUser." ";
+        $s = $this->name." ".$this->isPrivate." " .$this->isDone." ".$this->userName." ";
             foreach($this->tasks as $task)
             {
                 $s = $s.$task;

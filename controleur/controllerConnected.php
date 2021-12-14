@@ -7,7 +7,7 @@ class ControllerConnected
         if (!empty($action)) {
             switch ($action) {
                 case ("deconnexion"):
-                    Model::deconnexion();
+                    ModelConnected::deconnexion();
                     header("Location: index.php");
                     break;
                 default:

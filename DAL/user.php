@@ -1,10 +1,10 @@
 <?php
 class user{
-    private $id;
     private $name;
-    public function __construct(int $id, string $name)
+    private $role;
+    public function __construct(string $name,string $role)
     {
-        $this->id=$id;
+        $this->role=$role;
         $this->name=$name;
     }
 
@@ -12,7 +12,7 @@ class user{
         return $this->name;
     }
 
-    public function getId():int{
-        return $this->id;
+    public function getRole():string{
+        return $this->role;
     }
 }

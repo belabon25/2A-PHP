@@ -30,19 +30,19 @@ class Model{
         $premiere=$page*$nb;
         return $this->gtToDoList->getPublicLists($premiere,$nb);
     }
-    public function getPrivateLists(int $page,int $nb, int $userId):array{
+    public function getPrivateLists(int $page,int $nb, string $userName):array{
         $premiere=$page*$nb;
-        return $this->gtToDoList->getPrivateLists($premiere,$nb,$userId);
+        return $this->gtToDoList->getPrivateLists($premiere,$nb,$userName);
     }
     public function getNbPublicLists():int{
         return $this->gtToDoList->getNbPublicLists();
     }
-    public function getNbPrivateLists(int $userId):int{
-        return $this->gtToDoList->getNbPrivateLists($userId);
+    public function getNbPrivateLists(string $userName):int{
+        return $this->gtToDoList->getNbPrivateLists($userName);
     }
-    public function addList(string $name, bool $isPrivate, array $tabTask, int $userId=NULL):void{
-        $isPrivate=$userId==NUll?0:$isPrivate;
-        $id=$this->gtToDoList->addList($name,$isPrivate,$userId);
+    public function addList(string $name, bool $isPrivate, array $tabTask, string $userName=NULL):void{
+        $isPrivate=$userName==NUll?0:$isPrivate;
+        $id=$this->gtToDoList->addList($name,$isPrivate,$userName);
         $tm=new Model($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
         foreach($tabTask as $t){
             $tm->addTask($t,$id);
@@ -73,28 +73,8 @@ class Model{
     public function getHashedPasswd(string $userName):string{
         return $this->gtUser->getHashedPasswd($userName);
     }
-    public function getUserFromid(int $userId):user{
-        return $this->gtUser->getUserFromid($userId);
-    }
     public function addUser(string $userName, string $passwd):void{
         $passwd=password_hash($passwd,CRYPT_BLOWFISH);
         $this->gtUser->addUser($userName,$passwd);
-    }
-    public function connection(string $name, string $passwd):bool{
-        if(password_verify($passwd,$this->getHashedPasswd($name))){
-            $user=$this->getUser($name);
-            if ($user->getId()==-1) {
-                return false;
-            }
-            $_SESSION['id']=$user->getId();
-            $_SESSION['role']='connected';
-            return true;
-        }
-        return false;
-    }
-    public static function deconnexion():void{
-        session_unset();
-        session_destroy();
-        $_SESSION=array();
     }
 }
