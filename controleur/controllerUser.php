@@ -10,7 +10,13 @@ class ControllerUser
         if (isset($_GET[$keyToUse]) && !empty($_GET[$keyToUse])) {
             $numPage = $_GET[$keyToUse];
             $numPage = Validation::validatePageNb($numPage, $nbListes, $this->nbListesParPage);
-        } else {
+            $_SESSION[$keyToUse]=$numPage;
+        }
+        elseif (isset($_SESSION[$keyToUse]) && !empty($_SESSION[$keyToUse])) {
+            $numPage = $_SESSION[$keyToUse];
+            $numPage = Validation::validatePageNb($numPage, $nbListes, $this->nbListesParPage);
+        }
+         else {
             $numPage = 1;
         }
         return $numPage - 1;
