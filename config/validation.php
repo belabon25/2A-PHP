@@ -13,7 +13,7 @@ class Validation {
     }
 
 
-    //prend en reference le nom de la tache ainsi que ses tache pour les sanitize
+    //Prend en référence le nom de la liste ainsi que ses tache pour les sanitize
     static function validateFormNewList(string &$nom, array &$taches){ 
         $nom=filter_var($nom,FILTER_SANITIZE_STRING);
         foreach ($taches as &$t) {
@@ -21,7 +21,7 @@ class Validation {
         }
     }
 
-    //prend en reference le username et le password pour les sanitize
+    //Prend en référence le username et le password pour les sanitize
     static function validateUser(string &$username, string &$password){
         $username=filter_var($username,FILTER_SANITIZE_STRING);
         $password=filter_var($password,FILTER_SANITIZE_STRING);

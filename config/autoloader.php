@@ -13,15 +13,16 @@ class Autoload
         }
     }
 
+    //Chargement automatique des ressources
     private static function _autoload($class)
     {
-        global $dir; // récupère var. globales
+        global $dir; // récupère la variable globale
         $filename = $class . '.php';
-        $dirs = array('modele/', './', 'config/', 'controleur/','DAL/','DAL/gateway/','vues/');
+        $dirs = array('modele/', './', 'config/', 'controleur/','DAL/','DAL/gateway/','vues/'); //Préparation au chargement du programme
         foreach ($dirs as $d) {
             $file = $dir . $d . lcfirst($filename);
             if (file_exists($file)) {
-                include $file;
+                include $file; //Chargement de tous les fichiers
             }
         }
     }

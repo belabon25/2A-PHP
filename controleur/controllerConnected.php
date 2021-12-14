@@ -1,7 +1,7 @@
 <?php
 class ControllerConnected
 {
-    //Le constructeur regarde quel paramètre est donné pour ensuite choisir quelle page affichée
+    //Le constructeur regarde quel paramètre est donné pour ensuite choisir quelle page afficher
     public function __construct(string $action)
     {
         if (!empty($action)) {

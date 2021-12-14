@@ -1,4 +1,6 @@
 <?php
+
+// Classe de connexion vue en cours
 class Connection extends PDO{
     private $stmt;
     public function __construct(string $dsn,string $username,string $password){

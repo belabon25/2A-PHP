@@ -4,7 +4,7 @@ $dsn="mysql:host=localhost;dbname=dbyogourves";//$dsn="mysql:host=berlin.iut.loc
 $user="yogourves";
 $passwd="achanger";
 
-//vues
+//Chargement des vues
 $vues['error']=$dir.'vues/error.php';
 $vues['vueTaskPublic']=$dir.'vues/vueTaskPublic.php';
 $vues['vueTaskPrivee']=$dir.'vues/vueTaskPrivee.php';

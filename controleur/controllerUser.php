@@ -4,7 +4,7 @@ class ControllerUser
     //La page web affichera ce nombre de lignes par pages
     protected $nbListesParPage = 4;
 
-    //Vérifie si la page donnée est valide
+    //Vérifie si la page donnée est valide, montre la page 1 sinon
     public function setPage(string $keyToUse, int $nbListes): int
     {
         if (isset($_GET[$keyToUse]) && !empty($_GET[$keyToUse])) {
@@ -59,6 +59,7 @@ class ControllerUser
         }
     }
 
+    // Ajoute un utilisateur, retourne true si réussi
     public function addUser():bool
     {
         if (isset($_POST["fname"]) && isset($_POST["fpasswd"])){
@@ -76,17 +77,20 @@ class ControllerUser
         }
     }
 
+    //Permet de supprimer une liste, s'occupe de la récupération de l'id d'une liste privée.
     public function delListPrivee()
     {
         $idList=Validation::validateInt($_POST["idListPrivee"]);
         $this->delList($idList);
     }
+    //Permet de supprimer une liste, s'occupe de la récupération de l'id d'une liste publique.
     public function delListPublic()
     {
         $idList=Validation::validateInt($_POST["idListPublic"]);
         $this->delList($idList);
     }
 
+    //Permet de supprimer une liste en fonction de l'id récupéré.
     public function delList(int $idList)
     {
         $tTodolist=new Model($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
@@ -123,6 +127,7 @@ class ControllerUser
             require($GLOBALS["vues"]['vueTaskPriveeNonCo']);   
         }
     }
+    
     //Le constructeur regarde quel paramètre est donné pour ensuite choisir quelle page affichée
     public function __construct(string $action)
     {

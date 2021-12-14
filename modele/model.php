@@ -10,7 +10,7 @@ class Model{
         $this->gtUser=new gatewayUser($dsn,$user,$passwd);
     }
 
-    //task
+    //Méthodes utilisées pour intéragir avec les Tâches
     public function getTasks(int $listId):array{
         return $this->gtTask->getTasks($listId);
     }
@@ -25,7 +25,7 @@ class Model{
         $this->gtTask->delTask($taskId);
     }
 
-    //list
+    //Méthodes utilisées pour intéragir avec les todoLists
     public function getPublicLists(int $page,int $nb):array{
         $premiere=$page*$nb;
         return $this->gtToDoList->getPublicLists($premiere,$nb);
@@ -41,7 +41,7 @@ class Model{
         return $this->gtToDoList->getNbPrivateLists($userName);
     }
     public function addList(string $name, bool $isPrivate, array $tabTask, string $userName=NULL):void{
-        $isPrivate=$userName==NUll?0:$isPrivate;
+        $isPrivate=$userName==null?0:$isPrivate;
         $id=$this->gtToDoList->addList($name,$isPrivate,$userName);
         $tm=new Model($GLOBALS["dsn"],$GLOBALS["user"],$GLOBALS["passwd"]);
         foreach($tabTask as $t){
@@ -66,7 +66,7 @@ class Model{
         return $this->gtToDoList->getList($idList);
     }
 
-    //user
+    //Méthodes utilisées pour intéragir avec les utilisateurs
     public function getUser(string $userName):user{
         return $this->gtUser->getUser($userName);
     }

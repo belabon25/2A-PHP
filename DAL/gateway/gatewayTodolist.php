@@ -5,7 +5,7 @@ class gatewayTodolist{
        $this->con=new Connection($dsn,$user,$passwd); 
     }
 
-    //retourne la liste des publique listes
+    //Retourne la liste des listes publique
     public function getPublicLists(int $premiere,int $nb):array{
         $arr=[];
         $query="select * from todolist where isPrivate=0 order by id limit :premiere, :nb";
@@ -17,7 +17,7 @@ class gatewayTodolist{
         return $arr;
     }
 
-    //retourne la liste des todoList de l'utilisateur id
+    //Retourne la liste des todoList de l'utilisateur en fonction de son nom.
     public function getPrivateLists(int $premiere,int $nb, string $userName):array{
         $arr=[];
         $query="select * from todolist where isPrivate=1 and userName=:id order by id limit :premiere, :nb";
@@ -29,7 +29,7 @@ class gatewayTodolist{
         return $arr; 
     }
 
-    //retourne le nombre de list publique
+    //Retourne le nombre de listes publique
     public function getNbPublicLists():int{
         $res=0;
         $query="select count(*) from todolist where isPrivate=0";
@@ -38,7 +38,7 @@ class gatewayTodolist{
         return $res[0][0];
     }
 
-    //retourne le nombre de liste privée de l'utilisateur id
+    //Retourne le nombre de liste privées de l'utilisateur en fonction de son nom
     public function getNbPrivateLists(string $userName):int{
         $res=0;
         $query="select count(*) from todolist where isPrivate=1 and userName=:id";
@@ -47,7 +47,7 @@ class gatewayTodolist{
         return $res[0][0];
     }
 
-    //ajoute une liste a BDD
+    //Ajoute une liste a BDD
     public function addList(string $name, bool $isPrivate, string $userName=NULL):int
     {
         $query="insert into todolist(name,isPrivate,isDone,userName) values (:n,:p,:d,:id)";
@@ -58,6 +58,7 @@ class gatewayTodolist{
         return $res[0][0];
     }
 
+    //Indique si toutes les tâches sont terminées, sert pour l'affichage
     public function allTaskDone($idList):bool
     {
         $res=0;
@@ -67,13 +68,14 @@ class gatewayTodolist{
         return boolval($res[0]["count(*)"])>0?boolval(0):boolval(1);
     }
 
-    //supprime une liste
+    //Supprime une liste selon son ID
     public function delList(int $listId):void
     {
         $query="delete from todolist where id=:i";
         $this->con->executeQuery($query,array(":i"=>array($listId,PDO::PARAM_INT)));
     }
 
+    //Récupére une liste en fonction de son ID
     public function getList($idList):todoList{
         $res=0;
         $query="select * from todolist where id=:i";
