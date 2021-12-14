@@ -1,10 +1,14 @@
 <?php
 class ModelConnected{
+
+    //Déconnecte l'utilisateur
     public static function deconnexion():void{
         session_unset();
         session_destroy();
         $_SESSION=array();
     }
+
+    //Vérifie la connexion de l'utilisateur, retourne l'instance de l'utilisateur si il est connecté
     public static function isConnected():?user{
         if(isset($_SESSION['name']) && isset($_SESSION['role'])){
             $name=Validation::validateStr($_SESSION['name']);
@@ -16,6 +20,7 @@ class ModelConnected{
         }	
     }
 
+    //Connecte l'utilisateur
     public function connection(string $name, string $passwd):bool{
         $gtUser=new gatewayUser($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
         if(password_verify($passwd, $gtUser->getHashedPasswd($name))){

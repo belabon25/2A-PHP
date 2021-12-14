@@ -18,6 +18,8 @@ class Task{
     public function getId():?string{
         return $this->id;
     }
+
+    //Optionnel, jamais appelé
     public function __toString():string
     {
         $s = $this->nom." ".$this->id." ".$this->isDone;

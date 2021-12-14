@@ -18,3 +18,6 @@ $vues['vueAddList']=$dir.'vues/vueAddList.php';
 
 //Pseudo : Testeur
 //Mot de passe : 0000
+
+//Pseudo : Testeur2
+//Mot de passe : 0000

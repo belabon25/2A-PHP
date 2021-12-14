@@ -37,6 +37,8 @@ class todoList{
     public function getIdList():int{
         return $this->idList;
     }
+
+    //Optionnel, jamais appelé
     public function __toString():string
     {
         $s = $this->name." ".$this->isPrivate." " .$this->isDone." ".$this->userName." ";

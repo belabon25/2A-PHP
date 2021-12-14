@@ -7,7 +7,8 @@
 </head>
 <?php
 require('config/utils.php');
-//charge tout
+
+//Chargement de toutes les classes
 require('config/autoloader.php');
 Autoload::charger();
 

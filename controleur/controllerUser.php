@@ -31,7 +31,7 @@ class ControllerUser
             Validation::validateFormNewList($name, $tabTask);
             $todoListModel = new Model($GLOBALS["dsn"], $GLOBALS["user"], $GLOBALS["passwd"]);
             $user=ModelConnected::isConnected();
-            $todoListModel->addList($name, $visibility, $tabTask, $user->getName());
+            $todoListModel->addList($name, $visibility, $tabTask, $user?->getName());
         }
     }
 
@@ -127,7 +127,7 @@ class ControllerUser
             require($GLOBALS["vues"]['vueTaskPriveeNonCo']);   
         }
     }
-    
+
     //Le constructeur regarde quel paramètre est donné pour ensuite choisir quelle page affichée
     public function __construct(string $action)
     {
