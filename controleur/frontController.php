@@ -5,8 +5,14 @@ class FrontController{
         $listeAction_Admin =array('deconnexion');
         if (isset($_GET['action'])) {
             try{
-                if(in_array($_GET['action'],$listeAction_Admin)){	
-                    new	ControllerConnected($_GET['action']);
+                if(in_array($_GET['action'],$listeAction_Admin)){
+                    if (ModelConnected::isConnected()!=null) {
+                        new	ControllerConnected($_GET['action']);
+                    }
+                    else {
+                        require($GLOBALS["vues"]['vueEnTete']);
+                        require($GLOBALS["vues"]['vueConnexion']);
+                    }
                 }
                 else {
                     new	ControllerUser($_GET['action']);
